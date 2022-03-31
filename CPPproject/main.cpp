@@ -38,6 +38,7 @@ int main() {
         map.setItem(4, 11, l.printinfo());
 
         player.printDirection();
+        system("CLS");
         map.printMap();
         chatBox.printChatBox();
         cout << "\nEnter next step: ";
