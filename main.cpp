@@ -2,19 +2,141 @@
 #include <cstring>
 #include <string>
 
-#include "RoomItems.cpp"
-
 #define MAP_SIZE 16
 const int CHATBOX_SIZE = 6;
 using namespace std;
+
+class ChatBox;
+
+class Player {
+private:
+    string direction;
+    string name;
+    int x = 15;
+    int y = 15;
+    char player = '^';
+public:
+    string getName();
+    void setName(string);
+    string getDirection();
+    void setDirection(string);
+    int getX();
+    void setX(int);
+    int getY();
+    void setY(int);
+    char getPlayerIcon();
+    void setPlayerIcon(char);
+    void printDirection();
+    void printName();
+    void printPlayerIcon();
+};
+
+void Player::setName(string name) {
+    this->name = name;
+}
+
+string Player::getName() {
+    return name;
+}
+
+void Player::setX(int x) {
+    this->x = x;
+}
+
+int Player::getX() {
+    return x;
+}
+
+void Player::setY(int y) {
+    this->y = y;
+}
+
+char Player::getPlayerIcon() {
+    return player;
+}
+
+void Player::setPlayerIcon(char player) {
+    this->player = player;
+}
+
+int Player::getY() {
+    return y;
+}
+
+void Player::setDirection(string direction) {
+    this->direction = direction;
+}
+
+string Player::getDirection() {
+    return direction;
+}
+
+void Player::printName() {
+    cout << "Hi, " << getName() << ", welcome..." << endl;
+    cout << "are you ready to start your adventure?" << endl;
+}
+
+void Player::printPlayerIcon() {
+    cout << getPlayerIcon() << endl;
+}
+
+void Player::printDirection() {
+    if (direction == "up") {
+        if (getX() != 0) {
+            //chatBox.enterMessage("\nGo Up!");
+            setX(getX() - 1);
+        }
+        else {
+            //cout << "\nYou have bumped into a wall..." << endl;
+        }
+        setPlayerIcon('^');
+    }
+    else if (direction == "down") {
+        if (getX() != 15) {
+            //cout << "\nGo Down!" << endl;
+            setX(getX() + 1);
+        }
+        else {
+            //cout << "\nYou have bumped into a wall..." << endl;
+        }
+        setPlayerIcon('v');
+    }
+    else if (direction == "right") {
+        if (getY() != 15) {
+            //cout << "\nGo Right!" << endl;
+            setY(getY() + 1);
+        }
+        else {
+            //cout << "\nYou have bumped into a wall..." << endl;
+        }
+        setPlayerIcon('>');
+    }
+    else if (direction == "left") {
+        if (getY() != 0) {
+            //chatBox.enterMessage("Go Left!");
+            setY(getY() - 1);
+        }
+        else {
+            //cout << "\nYou have bumped into a wall..." << endl;
+        }
+        setPlayerIcon('<');
+    }
+    else if (direction == "giveup") {
+        cout << "\nYou gave up... Exiting game.";
+    }
+    else {
+        cout << "\nPlease enter one of the following: (Up/Down/Left/Right)" << endl;
+        //cout << "Where do you want to go?" << endl;
+    }
+}
 
 class Map {
 private:
     char mapping[MAP_SIZE][MAP_SIZE]{};
     char space = ' ';
     void createMap() {
-        for (auto &i: this->mapping) {
-            for (char &j: i) {
+        for (auto& i : this->mapping) {
+            for (char& j : i) {
                 j = this->space;
             }
         }
@@ -26,7 +148,7 @@ public:
     }
 
     void printMap() {
-        for (auto &i: mapping) {
+        for (auto& i : mapping) {
             for (int j = 0; j < MAP_SIZE; j++) {
                 if (j % 16 == 0) {
                     printf("\n");
@@ -55,13 +177,13 @@ private:
     char boxLines[CHATBOX_SIZE][(MAP_SIZE * 3) - 2]{};
     void createChatBox() {
         // initialise chatBox
-        for (auto &i: this->boxLines) {
+        for (auto& i : this->boxLines) {
             for (int j = 0; j < this->messageLength; j++) {
                 i[j] = this->space;
             }
         }
         printf("\n-------------------chat-box---------------------\n");  //49
-        for (auto &i: this->boxLines) {
+        for (auto& i : this->boxLines) {
             printf("%c", this->wall);
             for (int j = 0; j < this->messageLength; j++) {
                 printf("%c", i[j]);
@@ -71,13 +193,13 @@ private:
         printf("------------------------------------------------");
         system("CLS");
     }
-    void bumpMessage(int lines){
+    void bumpMessage(int lines) {
         for (int i = 0; i < CHATBOX_SIZE - lines; i++) {
             // move all message up
             copy(begin(this->boxLines[i + lines]), end(this->boxLines[i + lines]), begin(this->boxLines[i]));
         }
     }
-    void clearArray(int lines){
+    void clearArray(int lines) {
         for (int i = 1; i < lines + 1; i++) {
             // clear array for new lines
             fill_n(this->boxLines[CHATBOX_SIZE - i], this->messageLength, this->space);  // clear last line
@@ -301,7 +423,7 @@ public:
 
     void printChatBox() {
         printf("\n-------------------chat-box---------------------\n");  //49
-        for (auto &i: this->boxLines) {
+        for (auto& i : this->boxLines) {
             printf("|");
             for (int j = 0; j < this->messageLength; j++) {
                 printf("%c", i[j]);
@@ -312,7 +434,7 @@ public:
     }
 };
 
-void printScreen(Map map, ChatBox chatBox){
+void printScreen(Map map, ChatBox chatBox) {
     system("CLS");
     map.printMap();
     chatBox.printChatBox();
@@ -322,30 +444,28 @@ int main() {
     Map map;
     ChatBox chatBox;
     string instruction;
-    LockedDoor ld;
-    UnlockedDoor ud;
-    Table t;
-    Chair c;
-    Bed b;
-    Plant p;
-    Light l;
+    string name;
+    Player player;
 
-    while (true){
+    cout << "Hi Adventurer, welcome to QuizLand!" << endl;
+    cout << "But first, we would like to know your name: ";
 
-        map.setItem(0, 0, ld.printinfo(']'));
-        //map.setItem(0, 0, ud.printinfo('['));
-        map.setItem(7, 13, t.printinfo('T'));
-        map.setItem(7, 12, c.printinfo('h'));
-        map.setItem(5, 10, b.printinfo('='));
-        map.setItem(7, 6, p.printinfo('+'));
-        map.setItem(4, 11, l.printinfo('*'));
+    getline(cin, name);
+    player.setName(name);
+    player.printName();
 
+    while (true) {
+        player.printDirection();
         printScreen(map, chatBox);
         cout << "\nEnter next step: ";
         getline(cin, instruction);
-        if(instruction == "i quit bitch"){
+        if (instruction == "i quit bitch") {
             break;
-        } else {
+        }
+        else {
+            player.setDirection(instruction);
+            player.printDirection();
+            map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
             chatBox.enterMessage(instruction);
             continue;
         }
