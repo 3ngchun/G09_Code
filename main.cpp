@@ -455,6 +455,14 @@ int main() {
     player.printName();
 
     while (true) {
+        map.setItem(0, 0, ld.printinfo(']'));
+        //map.setItem(0, 0, ud.printinfo('['));
+        map.setItem(7, 13, t.printinfo('T'));
+        map.setItem(7, 12, c.printinfo('h'));
+        map.setItem(5, 10, b.printinfo('='));
+        map.setItem(7, 6, p.printinfo('+'));
+        map.setItem(4, 11, l.printinfo('*'));
+
         player.printDirection();
         printScreen(map, chatBox);
         cout << "\nEnter next step: ";
