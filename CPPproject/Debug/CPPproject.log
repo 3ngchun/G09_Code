@@ -1,0 +1,6 @@
+﻿  main.cpp
+C:\Users\iphig\Documents\ICT1009 OOP\C++ Project\Code\CPPproject\main.cpp(17,18): warning C4101: 'ud': unreferenced local variable
+  Map.cpp
+  RoomItem.cpp
+  Generating Code...
+  CPPproject.vcxproj -> C:\Users\iphig\Documents\ICT1009 OOP\C++ Project\Code\CPPproject\Debug\CPPproject.exe
