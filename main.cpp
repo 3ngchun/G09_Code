@@ -1,5 +1,8 @@
 #include <iostream>
 #include <cstring>
+#include <string>
+
+#include "RoomItems.cpp"
 
 #define MAP_SIZE 16
 const int CHATBOX_SIZE = 6;
@@ -87,7 +90,7 @@ public:
     }
     // one line intake
     void enterMessage(string line1) {
-        int lines = 1;
+        const int lines = 1;
         struct getLineArray {
             string line;
             int lineLength{};
@@ -117,7 +120,7 @@ public:
     }
     // two line intake
     void enterMessage(string line1, string line2) {
-        int lines = 2;
+        const int lines = 2;
         struct getLineArray {
             string line;
             int lineLength{};
@@ -149,7 +152,7 @@ public:
     }
     // three line intake
     void enterMessage(string line1, string line2, string line3) {
-        int lines = 3;
+        const int lines = 3;
         struct getLineArray {
             string line;
             int lineLength{};
@@ -183,7 +186,7 @@ public:
     }
     // four line intake
     void enterMessage(string line1, string line2, string line3, string line4) {
-        int lines = 4;
+        const int lines = 4;
         struct getLineArray {
             string line;
             int lineLength{};
@@ -219,7 +222,7 @@ public:
     }
     // five line intake
     void enterMessage(string line1, string line2, string line3, string line4, string line5) {
-        int lines = 5;
+        const int lines = 5;
         struct getLineArray {
             string line;
             int lineLength{};
@@ -257,7 +260,7 @@ public:
     }
     // six line intake (max)
     void enterMessage(string line1, string line2, string line3, string line4, string line5, string line6) {
-        int lines = 6;
+        const int lines = 6;
         struct getLineArray {
             string line;
             int lineLength{};
@@ -319,8 +322,24 @@ int main() {
     Map map;
     ChatBox chatBox;
     string instruction;
+    LockedDoor ld;
+    UnlockedDoor ud;
+    Table t;
+    Chair c;
+    Bed b;
+    Plant p;
+    Light l;
 
     while (true){
+
+        map.setItem(0, 0, ld.printinfo(']'));
+        //map.setItem(0, 0, ud.printinfo('['));
+        map.setItem(7, 13, t.printinfo('T'));
+        map.setItem(7, 12, c.printinfo('h'));
+        map.setItem(5, 10, b.printinfo('='));
+        map.setItem(7, 6, p.printinfo('+'));
+        map.setItem(4, 11, l.printinfo('*'));
+
         printScreen(map, chatBox);
         cout << "\nEnter next step: ";
         getline(cin, instruction);
