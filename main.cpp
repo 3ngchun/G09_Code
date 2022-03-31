@@ -446,6 +446,13 @@ int main() {
     string instruction;
     string name;
     Player player;
+    LockedDoor ld;
+    UnlockedDoor ud;
+    Table t;
+    Chair c;
+    Bed b;
+    Plant p;
+    Light l;
 
     cout << "Hi Adventurer, welcome to QuizLand!" << endl;
     cout << "But first, we would like to know your name: ";
