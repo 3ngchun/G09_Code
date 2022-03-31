@@ -59,3 +59,5 @@ class riddlePuzzle2 : public Puzzle{
     public:
         void startPuzzle();
 };
+
+#endif 
