@@ -37,7 +37,6 @@ int main() {
         map.setItem(7, 6, p.printinfo());
         map.setItem(4, 11, l.printinfo());
 
-        player.printDirection();
         system("CLS");
         map.printMap();
         chatBox.printChatBox();
@@ -45,8 +44,7 @@ int main() {
         getline(cin, instruction);
         if (instruction == "i quit bitch") {
             break;
-        }
-        else {
+        } else {
             player.setDirection(instruction);
             player.printDirection();
             map.setItem(player.getX(), player.getY(), player.getPlayerIcon());

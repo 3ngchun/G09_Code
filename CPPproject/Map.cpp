@@ -1,12 +1,14 @@
-#include <iostream>
 #include <cstring>
 #include <string>
-#include <stdexcept>
 #include "Map.h"
+#include "Player.h"
+
+class ChatBox;
 
 void Map::createMap() {
-    for (auto& i : this->mapping) {
-        for (char& j : i) {
+
+    for (auto &i: this->mapping) {
+        for (char &j: i) {
             j = this->space;
         }
     }
@@ -16,8 +18,50 @@ Map::Map() {
     createMap();
 }
 
+string Map::isWhatItemAhead(Player player, ChatBox chatBox) {
+    // return item ahead of player
+    int x = player.getX();
+    int y = player.getY();
+    char face = player.getPlayerIcon();
+    string next_facing_item;
+    switch (face){
+        case '^':
+            if (y != 0) {
+                next_facing_item = getItem(x, y - 1);
+            } else {
+                next_facing_item = "above is outside of map";
+            }
+            break;
+        case 'v':
+            if (y != 15) {
+                next_facing_item = getItem(x, y + 1);
+            } else {
+                next_facing_item = "below is outside of map";
+            }
+            break;
+        case '<':
+            if (x != 0) {
+                next_facing_item = getItem(x - 1, y);
+            } else {
+                next_facing_item = "further left is outside of map";
+            }
+            break;
+        case '>':
+            if (x != 15) {
+                next_facing_item = getItem(x + 1, y);
+            } else {
+                next_facing_item = "further right is outside of map";
+            }
+            break;
+        default:
+            next_facing_item = this->space;
+            break;
+    }
+    return next_facing_item;
+}
+
 void Map::printMap() {
-    for (auto& i : mapping) {
+    for (auto &i: mapping) {
         for (int j = 0; j < MAP_SIZE; j++) {
             if (j % 16 == 0) {
                 printf("\n");
@@ -29,38 +73,34 @@ void Map::printMap() {
 
 void Map::setItem(int x, int y, char item) {
     // set x,y position to item char
-    this->mapping[x][y] = item;
+    this->mapping[y][x] = item;
 }
 
 void Map::resetItem(int x, int y) {
     // reset x,y position back to space
-    this->mapping[x][y] = this->space;
+    this->mapping[y][x] = this->space;
 }
 
+char Map::getItem(int x, int y){
+    return this->mapping[y][x];
+}
 void ChatBox::createChatBox() {
     // initialise chatBox
-    for (auto& i : this->boxLines) {
+    for (auto &i: this->boxLines) {
         for (int j = 0; j < this->messageLength; j++) {
             i[j] = this->space;
         }
     }
-    printf("\n-------------------chat-box---------------------\n");  //49
-    for (auto& i : this->boxLines) {
-        printf("%c", this->wall);
-        for (int j = 0; j < this->messageLength; j++) {
-            printf("%c", i[j]);
-        }
-        printf("%c\n", this->wall);
-    }
-    printf("------------------------------------------------");
     system("CLS");
 }
+
 void ChatBox::bumpMessage(int lines) {
     for (int i = 0; i < CHATBOX_SIZE - lines; i++) {
         // move all message up
         copy(begin(this->boxLines[i + lines]), end(this->boxLines[i + lines]), begin(this->boxLines[i]));
     }
 }
+
 void ChatBox::clearArray(int lines) {
     for (int i = 1; i < lines + 1; i++) {
         // clear array for new lines
@@ -71,6 +111,19 @@ void ChatBox::clearArray(int lines) {
 ChatBox::ChatBox() {
     createChatBox();
 }
+
+void ChatBox::printChatBox() {
+    printf("\n-------------------chat-box---------------------\n");  //49
+    for (auto &i: this->boxLines) {
+        printf("|");
+        for (int j = 0; j < this->messageLength; j++) {
+            printf("%c", i[j]);
+        }
+        printf("|\n");
+    }
+    printf("------------------------------------------------");
+}
+
 // one line intake
 void ChatBox::enterMessage(string line1) {
     const int lines = 1;
@@ -101,6 +154,7 @@ void ChatBox::enterMessage(string line1) {
         counts.chatBoxStartPoint++;
     }
 }
+
 // two line intake
 void ChatBox::enterMessage(string line1, string line2) {
     const int lines = 2;
@@ -133,6 +187,7 @@ void ChatBox::enterMessage(string line1, string line2) {
         counts.chatBoxStartPoint++;
     }
 }
+
 // three line intake
 void ChatBox::enterMessage(string line1, string line2, string line3) {
     const int lines = 3;
@@ -167,6 +222,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3) {
         counts.chatBoxStartPoint++;
     }
 }
+
 // four line intake
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4) {
     const int lines = 4;
@@ -203,6 +259,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
         counts.chatBoxStartPoint++;
     }
 }
+
 // five line intake
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4, string line5) {
     const int lines = 5;
@@ -241,6 +298,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
         counts.chatBoxStartPoint++;
     }
 }
+
 // six line intake (max)
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4, string line5, string line6) {
     const int lines = 6;
@@ -282,16 +340,6 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
     }
 }
 
-void ChatBox::printChatBox() {
-    printf("\n-------------------chat-box---------------------\n");  //49
-    for (auto& i : this->boxLines) {
-        printf("|");
-        for (int j = 0; j < this->messageLength; j++) {
-            printf("%c", i[j]);
-        }
-        printf("|\n");
-    }
-    printf("------------------------------------------------");
-}
+
 
 

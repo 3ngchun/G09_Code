@@ -6,11 +6,13 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-
+#include "Player.h"
+#include "array"
+#include "vector"
 #define MAP_SIZE 16
 const int CHATBOX_SIZE = 6;
 using namespace std;
-
+class ChatBox;
 class Map {
 private:
     char mapping[MAP_SIZE][MAP_SIZE]{};
@@ -19,8 +21,10 @@ private:
 
 public:
     Map();
+    string isWhatItemAhead(Player, ChatBox);
     void printMap();
     void setItem(int x, int y, char item);
+    char getItem(int x, int y);
     void resetItem(int x, int y);
 };
 
@@ -36,6 +40,7 @@ private:
 
 public:
     ChatBox();
+    void printChatBox();
     // one line intake
     void enterMessage(string line1);
     // two line intake
@@ -48,7 +53,6 @@ public:
     void enterMessage(string line1, string line2, string line3, string line4, string line5);
     // six line intake (max)
     void enterMessage(string line1, string line2, string line3, string line4, string line5, string line6);
-    void printChatBox();
 };
 
 #endif 

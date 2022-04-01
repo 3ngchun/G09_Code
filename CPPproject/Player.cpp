@@ -53,9 +53,9 @@ void Player::printPlayerIcon() {
 
 void Player::printDirection() {
     if (direction == "up") {
-        if (getX() != 0) {
+        if (getY() != 0) {
             //chatBox.enterMessage("\nGo Up!");
-            setX(getX() - 1);
+            setY(getY() - 1);
         }
         else {
             //cout << "\nYou have bumped into a wall..." << endl;
@@ -63,9 +63,9 @@ void Player::printDirection() {
         setPlayerIcon('^');
     }
     else if (direction == "down") {
-        if (getX() != 15) {
+        if (getY() != 15) {
             //cout << "\nGo Down!" << endl;
-            setX(getX() + 1);
+            setY(getY() + 1);
         }
         else {
             //cout << "\nYou have bumped into a wall..." << endl;
@@ -73,9 +73,9 @@ void Player::printDirection() {
         setPlayerIcon('v');
     }
     else if (direction == "right") {
-        if (getY() != 15) {
+        if (getX() != 15) {
             //cout << "\nGo Right!" << endl;
-            setY(getY() + 1);
+            setX(getX() + 1);
         }
         else {
             //cout << "\nYou have bumped into a wall..." << endl;
@@ -83,9 +83,9 @@ void Player::printDirection() {
         setPlayerIcon('>');
     }
     else if (direction == "left") {
-        if (getY() != 0) {
+        if (getX() != 0) {
             //chatBox.enterMessage("Go Left!");
-            setY(getY() - 1);
+            setX(getX() - 1);
         }
         else {
             //cout << "\nYou have bumped into a wall..." << endl;
