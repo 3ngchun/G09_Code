@@ -32,11 +32,11 @@ int main() {
     while (true) {
         map.setItem(0, 0, ld.printinfo());
         //map.setItem(0, 0, ud.printinfo());
-        map.setItem(7, 13, t.printinfo());
-        map.setItem(7, 12, c.printinfo());
-        map.setItem(5, 10, b.printinfo());
-        map.setItem(7, 6, p.printinfo());
-        map.setItem(4, 11, l.printinfo());
+        map.setItem(13, 7, t.printinfo());
+        map.setItem(12, 7, c.printinfo());
+        map.setItem(10, 5, b.printinfo());
+        map.setItem(6, 7, p.printinfo());
+        map.setItem(11, 4, l.printinfo());
 
         system("CLS");
         map.printMap();
