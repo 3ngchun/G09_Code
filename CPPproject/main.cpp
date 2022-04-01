@@ -49,7 +49,11 @@ int main() {
             player.setDirection(instruction);
             player.printDirection();
             map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
-            chatBox.enterMessage(instruction);
+            if(map.isOutOfBound(player) == "out"){
+                chatBox.enterMessage(map.isWhatItemAhead(player));
+            } else {
+                chatBox.enterMessage(instruction);
+            }
             continue;
         }
     }

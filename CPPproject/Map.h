@@ -21,7 +21,8 @@ private:
 
 public:
     Map();
-    string isWhatItemAhead(Player, ChatBox);
+    string isWhatItemAhead(Player);
+    string isOutOfBound(Player);
     void printMap();
     void setItem(int x, int y, char item);
     char getItem(int x, int y);

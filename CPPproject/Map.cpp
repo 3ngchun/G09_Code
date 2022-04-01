@@ -18,7 +18,49 @@ Map::Map() {
     createMap();
 }
 
-string Map::isWhatItemAhead(Player player, ChatBox chatBox) {
+string Map::isOutOfBound(Player player) {
+    // return item ahead of player
+    int x = player.getX();
+    int y = player.getY();
+    char face = player.getPlayerIcon();
+    string next_facing_item;
+    switch (face){
+        case '^':
+            if (y != 0) {
+                next_facing_item = getItem(x, y - 1);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        case 'v':
+            if (y != 15) {
+                next_facing_item = getItem(x, y + 1);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        case '<':
+            if (x != 0) {
+                next_facing_item = getItem(x - 1, y);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        case '>':
+            if (x != 15) {
+                next_facing_item = getItem(x + 1, y);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        default:
+            next_facing_item = this->space;
+            break;
+    }
+    return next_facing_item;
+}
+
+string Map::isWhatItemAhead(Player player) {
     // return item ahead of player
     int x = player.getX();
     int y = player.getY();
