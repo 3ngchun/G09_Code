@@ -40,6 +40,7 @@ int main() {
 
         system("CLS");
         map.printMap();
+        map.resetItem(player.getX(), player.getY());
         chatBox.printChatBox();
         cout << "\nEnter next step: ";
         getline(cin, instruction);
