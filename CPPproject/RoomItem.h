@@ -9,7 +9,7 @@ using namespace std;
 class RoomItems
 {
 public:
-	char printinfo() {};
+	char printinfo();
 };
 
 class LockedDoor : public RoomItems

@@ -27,6 +27,7 @@ int main() {
     getline(cin, name);
     player.setName(name);
     player.printName();
+    map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
 
     while (true) {
         map.setItem(0, 0, ld.printinfo());
