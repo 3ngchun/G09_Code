@@ -29,13 +29,13 @@ int main() {
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
 
     while (true) { 
-        map.setItem(0, 0, ld.printinfo());
+        map.setItem(ld.getX(),ld.getY(), ld.printinfo());
         //map.setItem(0, 0, ud.printinfo());
-        map.setItem(13, 7, t.printinfo());
-        map.setItem(12, 7, c.printinfo());
-        map.setItem(10, 5, b.printinfo());
-        map.setItem(6, 7, p.printinfo());
-        map.setItem(11, 4, l.printinfo());
+        map.setItem(t.getX(), t.getY(), t.printinfo());
+        map.setItem(c.getX(), c.getY(), c.printinfo());
+        map.setItem(b.getX(), b.getY(), b.printinfo());
+        map.setItem(p.getX(), p.getY(), p.printinfo());
+        map.setItem(l.getX(), l.getY(), l.printinfo());
 
         system("CLS");
         player.printName();
