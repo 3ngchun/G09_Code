@@ -23,13 +23,12 @@ int main() {
 
     cout << "Hi Adventurer, welcome to QuizLand!" << endl;
     cout << "But first, we would like to know your name: ";
-
     getline(cin, name);
     player.setName(name);
-    player.printName();
+
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
 
-    while (true) {
+    while (true) { 
         map.setItem(0, 0, ld.printinfo());
         //map.setItem(0, 0, ud.printinfo());
         map.setItem(13, 7, t.printinfo());
@@ -39,6 +38,7 @@ int main() {
         map.setItem(11, 4, l.printinfo());
 
         system("CLS");
+        player.printName();
         map.printMap();
         map.resetItem(player.getX(), player.getY());
         chatBox.printChatBox();
