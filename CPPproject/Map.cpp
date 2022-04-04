@@ -18,7 +18,47 @@ void Map::createMap() {
 Map::Map() {
     createMap();
 }
-
+string Map::isOutOfBound(Player player) {
+    // check item ahead of player is out of bound or what item is it
+    int x = player.getX();
+    int y = player.getY();
+    char face = player.getPlayerIcon();
+    string next_facing_item;
+    switch (face){
+        case '^':
+            if (y != 0) {
+                next_facing_item = getItem(x, y - 1);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        case 'v':
+            if (y != 15) {
+                next_facing_item = getItem(x, y + 1);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        case '<':
+            if (x != 0) {
+                next_facing_item = getItem(x - 1, y);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        case '>':
+            if (x != 15) {
+                next_facing_item = getItem(x + 1, y);
+            } else {
+                next_facing_item = "out";
+            }
+            break;
+        default:
+            next_facing_item = this->space;
+            break;
+    }
+    return next_facing_item;
+}
 string Map::checkMap(Player player) {
     // return item ahead of player
     int x = player.getX();
@@ -74,7 +114,7 @@ string Map::checkMap(Player player) {
 }
 
 string Map::isWhatItemAhead(Player player) {
-    // return item ahead of player
+    // return item char ahead of player in string type
     int x = player.getX();
     int y = player.getY();
     char face = player.getPlayerIcon();
@@ -112,27 +152,27 @@ string Map::isWhatItemAhead(Player player) {
             next_facing_item = this->space;
             break;
     }
-    if (next_facing_item.compare("]") == 0) {
-        next_facing_item = "Locked door ahead";
-    }
-    else if (next_facing_item.compare("[") == 0) {
-        next_facing_item = "Unlocked door ahead";
-    }
-    else if (next_facing_item.compare("h") == 0) {
-        next_facing_item = "There is a chair ahead";
-    }
-    else if (next_facing_item.compare("T") == 0) {
-        next_facing_item = "There is a table ahead";
-    }
-    else if (next_facing_item.compare("=") == 0) {
-        next_facing_item = "There is a bed ahead";
-    }
-    else if (next_facing_item.compare("+") == 0) {
-        next_facing_item = "There is a plant ahead";
-    }
-    else if (next_facing_item.compare("*") == 0) {
-        next_facing_item = "There is a lamp ahead";
-    }
+//     if (next_facing_item.compare("]") == 0) {
+//         next_facing_item = "Locked door ahead";
+//     }
+//     else if (next_facing_item.compare("[") == 0) {
+//         next_facing_item = "Unlocked door ahead";
+//     }
+//     else if (next_facing_item.compare("h") == 0) {
+//         next_facing_item = "There is a chair ahead";
+//     }
+//     else if (next_facing_item.compare("T") == 0) {
+//         next_facing_item = "There is a table ahead";
+//     }
+//     else if (next_facing_item.compare("=") == 0) {
+//         next_facing_item = "There is a bed ahead";
+//     }
+//     else if (next_facing_item.compare("+") == 0) {
+//         next_facing_item = "There is a plant ahead";
+//     }
+//     else if (next_facing_item.compare("*") == 0) {
+//         next_facing_item = "There is a lamp ahead";
+//     }
     return next_facing_item;
 }
 
