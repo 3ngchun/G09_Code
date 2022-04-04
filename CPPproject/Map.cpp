@@ -83,56 +83,13 @@ string Map::isWhatItemAhead(Player player) {
         case '^':
             if (y != 0) {
                 next_facing_item = getItem(x, y - 1);
-                if (next_facing_item.compare("]") == 0) {
-                    next_facing_item = "Locked door ahead";
-                }
-                else if (next_facing_item.compare("[") == 0) {
-                    next_facing_item = "Unlocked door ahead";
-                }
-                else if (next_facing_item.compare("h") == 0) {
-                    next_facing_item = "There is a chair ahead";
-                }
-                else if (next_facing_item.compare("T") == 0) {
-                    next_facing_item = "There is a table ahead";
-                }
-                else if (next_facing_item.compare("=") == 0) {
-                    next_facing_item = "There is a bed ahead";
-                }
-                else if (next_facing_item.compare("+") == 0) {
-                    next_facing_item = "There is a plant ahead";
-                }
-                else if (next_facing_item.compare("*") == 0) {
-                    next_facing_item = "There is a lamp ahead";
-                }
-            } 
-                else {
+            } else {
                 next_facing_item = "above is outside of map";
             }
             break;
         case 'v':
             if (y != 15) {
                 next_facing_item = getItem(x, y + 1);
-                if (next_facing_item.compare("]") == 0) {
-                    next_facing_item = "Locked door ahead";
-                }
-                else if (next_facing_item.compare("[") == 0) {
-                    next_facing_item = "Unlocked door ahead";
-                }
-                else if (next_facing_item.compare("h") == 0) {
-                    next_facing_item = "There is a chair ahead";
-                }
-                else if (next_facing_item.compare("T") == 0) {
-                    next_facing_item = "There is a table ahead";
-                }
-                else if (next_facing_item.compare("=") == 0) {
-                    next_facing_item = "There is a bed ahead";
-                }
-                else if (next_facing_item.compare("+") == 0) {
-                    next_facing_item = "There is a plant ahead";
-                }
-                else if (next_facing_item.compare("*") == 0) {
-                    next_facing_item = "There is a lamp ahead";
-                }
             } else {
                 next_facing_item = "below is outside of map";
             }
@@ -140,27 +97,6 @@ string Map::isWhatItemAhead(Player player) {
         case '<':
             if (x != 0) {
                 next_facing_item = getItem(x - 1, y);
-                if (next_facing_item.compare("]") == 0) {
-                    next_facing_item = "Locked door ahead";
-                }
-                else if (next_facing_item.compare("[") == 0) {
-                    next_facing_item = "Unlocked door ahead";
-                }
-                else if (next_facing_item.compare("h") == 0) {
-                    next_facing_item = "There is a chair ahead";
-                }
-                else if (next_facing_item.compare("T") == 0) {
-                    next_facing_item = "There is a table ahead";
-                }
-                else if (next_facing_item.compare("=") == 0) {
-                    next_facing_item = "There is a bed ahead";
-                }
-                else if (next_facing_item.compare("+") == 0) {
-                    next_facing_item = "There is a plant ahead";
-                }
-                else if (next_facing_item.compare("*") == 0) {
-                    next_facing_item = "There is a lamp ahead";
-                }
             } else {
                 next_facing_item = "further left is outside of map";
             }
@@ -168,27 +104,6 @@ string Map::isWhatItemAhead(Player player) {
         case '>':
             if (x != 15) {
                 next_facing_item = getItem(x + 1, y);
-                if (next_facing_item.compare("]") == 0) {
-                    next_facing_item = "Locked door ahead";
-                }
-                else if (next_facing_item.compare("[") == 0) {
-                    next_facing_item = "Unlocked door ahead";
-                }
-                else if (next_facing_item.compare("h") == 0) {
-                    next_facing_item = "There is a chair ahead";
-                }
-                else if (next_facing_item.compare("T") == 0) {
-                    next_facing_item = "There is a table ahead";
-                }
-                else if (next_facing_item.compare("=") == 0) {
-                    next_facing_item = "There is a bed ahead";
-                }
-                else if (next_facing_item.compare("+") == 0) {
-                    next_facing_item = "There is a plant ahead";
-                }
-                else if (next_facing_item.compare("*") == 0) {
-                    next_facing_item = "There is a lamp ahead";
-                }
             } else {
                 next_facing_item = "further right is outside of map";
             }
@@ -196,6 +111,27 @@ string Map::isWhatItemAhead(Player player) {
         default:
             next_facing_item = this->space;
             break;
+    }
+    if (next_facing_item.compare("]") == 0) {
+        next_facing_item = "Locked door ahead";
+    }
+    else if (next_facing_item.compare("[") == 0) {
+        next_facing_item = "Unlocked door ahead";
+    }
+    else if (next_facing_item.compare("h") == 0) {
+        next_facing_item = "There is a chair ahead";
+    }
+    else if (next_facing_item.compare("T") == 0) {
+        next_facing_item = "There is a table ahead";
+    }
+    else if (next_facing_item.compare("=") == 0) {
+        next_facing_item = "There is a bed ahead";
+    }
+    else if (next_facing_item.compare("+") == 0) {
+        next_facing_item = "There is a plant ahead";
+    }
+    else if (next_facing_item.compare("*") == 0) {
+        next_facing_item = "There is a lamp ahead";
     }
     return next_facing_item;
 }
