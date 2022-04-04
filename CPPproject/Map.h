@@ -24,6 +24,7 @@ public:
     Map();
     string isWhatItemAhead(Player);
     string checkMap(Player);
+    string isOutOfBound(Player);
     void printMap();
     void setItem(int x, int y, char item);
     char getItem(int x, int y);
