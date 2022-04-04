@@ -7,6 +7,7 @@
 #include <cstring>
 #include <string>
 #include "Player.h"
+#include "RoomItem.h"
 #include "array"
 #include "vector"
 #define MAP_SIZE 16
@@ -22,7 +23,7 @@ private:
 public:
     Map();
     string isWhatItemAhead(Player);
-    string isOutOfBound(Player);
+    string checkMap(Player);
     void printMap();
     void setItem(int x, int y, char item);
     char getItem(int x, int y);

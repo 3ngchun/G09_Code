@@ -2,6 +2,7 @@
 #include <string>
 #include "Map.h"
 #include "Player.h"
+#include "RoomItem.h"
 
 class ChatBox;
 
@@ -18,7 +19,7 @@ Map::Map() {
     createMap();
 }
 
-string Map::isOutOfBound(Player player) {
+string Map::checkMap(Player player) {
     // return item ahead of player
     int x = player.getX();
     int y = player.getY();
@@ -28,6 +29,9 @@ string Map::isOutOfBound(Player player) {
         case '^':
             if (y != 0) {
                 next_facing_item = getItem(x, y - 1);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item";
+                }
             } else {
                 next_facing_item = "out";
             }
@@ -35,6 +39,9 @@ string Map::isOutOfBound(Player player) {
         case 'v':
             if (y != 15) {
                 next_facing_item = getItem(x, y + 1);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item";
+                }
             } else {
                 next_facing_item = "out";
             }
@@ -42,6 +49,9 @@ string Map::isOutOfBound(Player player) {
         case '<':
             if (x != 0) {
                 next_facing_item = getItem(x - 1, y);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item";
+                }
             } else {
                 next_facing_item = "out";
             }
@@ -49,6 +59,9 @@ string Map::isOutOfBound(Player player) {
         case '>':
             if (x != 15) {
                 next_facing_item = getItem(x + 1, y);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item";
+                }
             } else {
                 next_facing_item = "out";
             }
@@ -70,6 +83,10 @@ string Map::isWhatItemAhead(Player player) {
         case '^':
             if (y != 0) {
                 next_facing_item = getItem(x, y - 1);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item ahead";
+                }
+                
             } else {
                 next_facing_item = "above is outside of map";
             }
@@ -77,6 +94,9 @@ string Map::isWhatItemAhead(Player player) {
         case 'v':
             if (y != 15) {
                 next_facing_item = getItem(x, y + 1);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item ahead";
+                }
             } else {
                 next_facing_item = "below is outside of map";
             }
@@ -84,6 +104,9 @@ string Map::isWhatItemAhead(Player player) {
         case '<':
             if (x != 0) {
                 next_facing_item = getItem(x - 1, y);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item ahead";
+                }
             } else {
                 next_facing_item = "further left is outside of map";
             }
@@ -91,6 +114,9 @@ string Map::isWhatItemAhead(Player player) {
         case '>':
             if (x != 15) {
                 next_facing_item = getItem(x + 1, y);
+                if (next_facing_item.compare(" ") != 0) {
+                    next_facing_item = "Item ahead";
+                }
             } else {
                 next_facing_item = "further right is outside of map";
             }

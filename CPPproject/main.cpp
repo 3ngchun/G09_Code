@@ -50,9 +50,14 @@ int main() {
             player.setDirection(instruction);
             player.printDirection();
             map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
-            if(map.isOutOfBound(player) == "out"){
+
+            if(map.checkMap(player) == "out"){
                 chatBox.enterMessage(map.isWhatItemAhead(player));
-            } else {
+            } 
+            else if (map.checkMap(player) == "Item") {
+                chatBox.enterMessage(map.isWhatItemAhead(player));
+            }
+            else {
                 chatBox.enterMessage(instruction);
             }
             continue;
