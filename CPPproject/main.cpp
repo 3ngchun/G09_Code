@@ -65,7 +65,8 @@ int main() {
                 chatBox.enterMessage(map.isWhatItemAhead(player));
             } 
             else if (map.checkMap(player) == "Item") {
-                chatBox.enterMessage(map.isWhatItemAhead(player));
+                string item = map.isWhatItemAhead(player);
+                chatBox.enterMessage(map.printItemAhead(item));
             }
             else {
                 chatBox.enterMessage(instruction);
