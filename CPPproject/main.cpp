@@ -9,7 +9,8 @@ using namespace std;
 int main() {
 
     Map map;
-    ChatBox chatBox;
+    ChatBox cb;
+    ChatBox* chatBox = &cb;
     string instruction;
     string name;
     Player player;
@@ -51,7 +52,7 @@ int main() {
         player.printName();
         map.printMap();
         map.resetItem(player.getX(), player.getY());
-        chatBox.printChatBox();
+        chatBox->printChatBox();
         cout << "\nEnter next step: ";
         getline(cin, instruction);
         if (instruction == "i quit bitch") {
@@ -62,14 +63,22 @@ int main() {
             map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
 
             if(map.checkMap(player) == "out"){
-                chatBox.enterMessage(map.isWhatItemAhead(player));
+                chatBox->enterMessage(map.isWhatItemAhead(player));
             } 
             else if (map.checkMap(player) == "Item") {
                 string item = map.isWhatItemAhead(player);
-                chatBox.enterMessage(map.printItemAhead(item));
+                chatBox->enterMessage(map.printItemAhead(item));
+                chatBox->enterMessage("Enter 'interact' to interact with item");
+                chatBox->enterMessage(instruction);
+                if (instruction == "interact") {
+                    //TODO Add Puzzle hanlder
+                    // randomPuzzle(puzzles, chatBox);
+                    puzzles[1]->startPuzzle(chatBox, map);
+                    // puzzles[0]->startPuzzle(chatBox);
+                }
             }
             else {
-                chatBox.enterMessage(instruction);
+                chatBox->enterMessage(instruction);
             }
             continue;
         }
