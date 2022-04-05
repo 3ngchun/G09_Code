@@ -181,12 +181,24 @@ string Map::printItemAhead(string next_facing_item) {
 }
 
 void Map::printMap() {
-    for (auto &i: mapping) {
+    for (auto& i : mapping) {
         for (int j = 0; j < MAP_SIZE; j++) {
             if (j % 16 == 0) {
+                SetConsoleTextAttribute(hConsole, 7);
                 printf("\n");
             }
-            printf("[%c]", i[j]);
+            if (i[j] == '^' || i[j] == 'v' || i[j] == '<' || i[j] == '>') {
+                printf("[");
+                SetConsoleTextAttribute(hConsole, 10);
+                printf("%c", i[j]);
+                SetConsoleTextAttribute(hConsole, 7);
+                printf("]");
+            }
+            else {
+                SetConsoleTextAttribute(hConsole, 7);
+                printf("[%c]", i[j]);
+
+            }
         }
     }
 }

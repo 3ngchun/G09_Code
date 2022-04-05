@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <Windows.h>
 #include "Player.h"
 #include "RoomItem.h"
 #include "array"
@@ -19,6 +20,7 @@ private:
     char mapping[MAP_SIZE][MAP_SIZE]{};
     char space = ' ';
     void createMap();
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 public:
     Map();
