@@ -181,7 +181,7 @@ string Map::printItemAhead(string next_facing_item) {
 }
 
 void Map::printMap() {
-    for (auto& i : mapping) {
+    for (auto &i : mapping) {
         for (int j = 0; j < MAP_SIZE; j++) {
             if (j % 16 == 0) {
                 SetConsoleTextAttribute(hConsole, 7);
