@@ -4,6 +4,9 @@
 char RoomItems::printinfo() {
 	return 0;
 }
+string RoomItems::getCMP(){
+	return this->item;
+}
 string RoomItems::getItemName() {
 	return " ";
 }
