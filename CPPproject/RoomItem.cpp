@@ -16,7 +16,7 @@ void RoomItems::setX(int x) {
 int RoomItems::getY() {
 	return y;
 }
-void RoomItems::setY(int x) {
+void RoomItems::setY(int y) {
 	this->y = y;
 }
 char LockedDoor::printinfo() {
@@ -36,7 +36,7 @@ void LockedDoor::setX(int x) {
 int LockedDoor::getY() {
 	return y;
 }
-void LockedDoor::setY(int x) {
+void LockedDoor::setY(int y) {
 	this->y = y;
 }
 
@@ -57,7 +57,7 @@ void UnlockedDoor::setX(int x) {
 int UnlockedDoor::getY() {
 	return y;
 }
-void UnlockedDoor::setY(int x) {
+void UnlockedDoor::setY(int y) {
 	this->y = y;
 }
 
@@ -79,7 +79,7 @@ void Chair::setX(int x) {
 int Chair::getY() {
 	return y;
 }
-void Chair::setY(int x) {
+void Chair::setY(int y) {
 	this->y = y;
 }
 
@@ -101,7 +101,7 @@ void Table::setX(int x) {
 int Table::getY() {
 	return y;
 }
-void Table::setY(int x) {
+void Table::setY(int y) {
 	this->y = y;
 }
 
@@ -123,7 +123,7 @@ void Bed::setX(int x) {
 int Bed::getY() {
 	return y;
 }
-void Bed::setY(int x) {
+void Bed::setY(int y) {
 	this->y = y;
 }
 
@@ -145,14 +145,21 @@ void Plant::setX(int x) {
 int Plant::getY() {
 	return y;
 }
-void Plant::setY(int x) {
+void Plant::setY(int y) {
 	this->y = y;
+}
+
+void Light::setLightIcon(char item) {
+	this->item = item;
+}
+
+char Light::getLightIcon() {
+	return item;
 }
 
 char Light::printinfo()
 {
-	char item = '*';
-	return item;
+	return getLightIcon();
 }
 string Light::getItemName() {
 	return itemName;
@@ -169,4 +176,16 @@ int Light::getY() {
 }
 void Light::setY(int x) {
 	this->y = y;
+}
+void Light::turnLightsOn() {
+	if (on == false) {
+		on = true;
+		setLightIcon('*');
+	}
+}
+void Light::turnLightsOff() {
+	if (on == true) {
+		on = false;
+		setLightIcon('.');
+	}
 }

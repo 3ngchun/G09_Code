@@ -116,10 +116,16 @@ class Light : public RoomItems
 private:
 	int x = 11;
 	int y = 4;
+	char item = '.';
+	bool on = false;
 	string itemName = "Light";
 public:
 	string getItemName();
+	void setLightIcon(char);
+	char getLightIcon();
 	char printinfo();
+	void turnLightsOn();
+	void turnLightsOff();
 	int getX();
 	void setX(int);
 	int getY();
