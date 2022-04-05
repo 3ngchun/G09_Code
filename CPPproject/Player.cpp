@@ -144,3 +144,21 @@ void Player::printDirection() {
         //cout << "Where do you want to go?" << endl;
     }
 }
+
+istream& operator >> (istream& in, Player& player) {
+    const string ERROR_MSG = "Name cannot contain special character.";
+    cout << "But first, we would like to know your name: ";
+    getline(in, player.name);
+    int length = player.name.length();
+    for (int i = 0; i < length; i++) {
+        if (!((player.name[i] >= 48 && player.name[i] <= 57) ||
+            (player.name[i] >= 65 && player.name[i] <= 90) ||
+            (player.name[i] >= 97 && player.name[i] <= 122))) {
+            throw(ERROR_MSG);
+        }
+    }
+    if (length > 15) {
+        throw(length);
+    }
+    return in;
+}

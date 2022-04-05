@@ -22,9 +22,19 @@ int main() {
     Light l;
 
     cout << "Hi Adventurer, welcome to QuizLand!" << endl;
-    cout << "But first, we would like to know your name: ";
-    getline(cin, name);
-    player.setName(name);
+    do {
+        try {
+            cin >> player;
+        }
+        catch (const string msg) {
+            cout << msg << endl;
+            player.setName(" ");
+        }
+        catch (const int length) {
+            cout << "Name should not exceed 15 characters" << endl;
+            player.setName(" ");
+        }
+    } while (player.getName() == " ");
 
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
 

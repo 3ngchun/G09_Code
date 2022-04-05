@@ -7,6 +7,7 @@
 using namespace std;
 
 class Player {
+    friend istream& operator >> (istream&, Player&);
 private:
     string direction;
     string name;
