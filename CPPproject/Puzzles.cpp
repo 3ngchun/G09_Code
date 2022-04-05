@@ -5,225 +5,249 @@
 #include <time.h>
 #include "Puzzles.h"
 
-void Puzzle::setUnsolved(){
-    this -> solved = false;
+void Puzzle::setUnsolved() {
+    this->solved = false;
 }
 
-void Puzzle::setSolved(){
-    this -> solved = true;
+void Puzzle::setSolved() {
+    this->solved = true;
 }
 
-bool Puzzle::getSolved(){
+bool Puzzle::getSolved() {
     return solved;
 }
 
-void Puzzle::setName(string name){
+void Puzzle::setName(string name) {
     this->puzzleName = name;
 }
 
-string Puzzle::getName(){
+string Puzzle::getName() {
     return puzzleName;
 }
 
-void Puzzle::startPuzzle(){
-    this->startPuzzle();
+void Puzzle::startPuzzle(ChatBox* cb, Map map) {
+    this->startPuzzle(cb, map);
 }
 
 // Scrambled Letters Puzzle #1
-void lettersPuzzle :: startPuzzle(){
+lettersPuzzle::lettersPuzzle() {
+    setName("Letters Puzzle");
+}
 
-    cout << "***Welcome to the Letters Puzzle!!***" << endl;
+void lettersPuzzle::startPuzzle(ChatBox* cb, Map map) {
+    string input;
 
-    while (input != correctAnswer){
-        cout << endl;
-        cout << "Decipher: " << scrambled << endl;
-        cout << endl;
-        cout << "Enter ')' to give up OR"<< endl;
-        cout << "Enter your guess:";
-        cin >> input;
+    cb->enterMessage("***Welcome to the Letters Puzzle!!***");
+
+    while (true) {
+        cb->enterMessage("", "Decipher: " + scrambled);
+        cb->enterMessage("Enter ')' to give up OR", "");
+        // cb->enterMessage("Enter your guess:");
+        system("CLS");
+        map.printMap();
+        cb->printChatBox();
+        cout << "\nEnter your guess: ";
+        getline(cin, input);
         transform(input.begin(), input.end(), input.begin(), ::toupper);
-        if (input == ")"){
-            cout << endl;
-            cout << "You'll get it next time!!" << endl;
+        if (input == ")") {
+            cb->enterMessage("", "You'll get it next time!!");
             break;
         }
-    }
-
-    if (input == correctAnswer){
-        cout << endl;
-        cout << "CONGRATULATIONS!!" << endl;
-        cout << "You solved the puzzle!" << endl;
-        cout << endl;
-        this -> setSolved();
+        if (input == correctAnswer) {
+            cb->enterMessage("", "", "", "CONGRATULATIONS!!");
+            cb->enterMessage("", "You solved the puzzle!");
+            this->setSolved();
+            break;
+        }
     }
 }
 
 // Arithmetic Puzzle #2
-void arithmeticPuzzle :: startPuzzle(){
+arithmeticPuzzle::arithmeticPuzzle() {
+    setName("Arithmetic Puzzle");
+}
 
-    cout << "***Welcome to the Arithmetic Puzzle!!***" << endl;
+void arithmeticPuzzle::startPuzzle(ChatBox* cb, Map map) {
+    string input;
+    int int_input;
 
-    while (input != correctAnswer){
-        cout << endl;
-        cout << "A farmer has 17 sheep and all but 8 die. How many are left?" << endl;
-        cout << endl;
-        cout << "Enter '69' to give up OR"<< endl;
-        cout << "Enter your guess:";
-        cin >> input;
-        if (input == 69){
-            cout << endl;
-            cout << "You'll get it next time!!" << endl;
+    cb->enterMessage("***Welcome to the Arithmetic Puzzle!!***");
+
+    while (true) {
+        cb->enterMessage("", "A farmer has 17 sheep and all but 8 die.");
+        cb->enterMessage("How many are left?");
+        cb->enterMessage("", "Enter '69' to give up OR");
+        system("CLS");
+        map.printMap();
+        cb->printChatBox();
+        cout << "\nEnter your guess: ";
+        getline(cin, input);
+        int_input = stoi(input);
+        if (int_input == 69) {
+            cb->enterMessage("", "You'll get it next time!!");
             break;
         }
-    }
-
-    if (input == correctAnswer){
-        cout << endl;
-        cout << "CONGRATULATIONS!!" << endl;
-        cout << "You solved the puzzle!" << endl;
-        cout << endl;
-        this -> setSolved();
+        if (int_input == correctAnswer) {
+            cout << endl;
+            cb->enterMessage("", "", "", "CONGRATULATIONS!!");
+            cb->enterMessage("", "You solved the puzzle!");
+            this->setSolved();
+            break;
+        }
     }
 }
 
 //Lockbreaking Puzzle #3
-void lockbreakingPuzzle :: startPuzzle(){
+lockbreakingPuzzle::lockbreakingPuzzle() {
+    setName("Lockbreaking Puzzle");
+}
 
-    cout << "***Welcome to the Lockbreaking Puzzle!!***" << endl;
+void lockbreakingPuzzle::startPuzzle(ChatBox* cb, Map map) {
 
-    while (input != correctAnswer){
-        cout << "Oh no! we've found an old password to a safe but we can't figure out what the missing number is :((" << endl;
-        cout << "1 3 5 _ 9 11 13" << endl;
-        cout << endl;
-        cout << "Enter '69' to give up OR"<< endl;
-        cout << "Enter your guess:";
-        cin >> input;
-        if (input == 69){
-            cout << endl;
-            cout << "You'll get it next time!!" << endl;
+    string input;
+    int int_input;
+
+    cb->enterMessage("***Welcome to the Lockbreaking Puzzle!!***");
+
+    while (true) {
+        cb->enterMessage("", "We've found an incomplete password!!");
+        cb->enterMessage("1 3 5 _ 9 11 13");
+        cb->enterMessage("", "Enter '69' to give up OR");
+        system("CLS");
+        map.printMap();
+        cb->printChatBox();
+        cout << "\nEnter your guess: ";
+        getline(cin, input);
+        int_input = stoi(input);
+        if (int_input == 69) {
+            cb->enterMessage("", "You'll get it next time!!");
             break;
         }
-    }
-
-    if (input == correctAnswer){
-        cout << endl;
-        cout << "CONGRATULATIONS!!" << endl;
-        cout << "You solved the puzzle!" << endl;
-        cout << endl;
-        this -> setSolved();
+        if (int_input == correctAnswer) {
+            cout << endl;
+            cb->enterMessage("", "", "", "CONGRATULATIONS!!");
+            cb->enterMessage("", "You solved the puzzle!");
+            this->setSolved();
+            break;
+        }
     }
 }
 
 // Riddle Puzzle #4
-void riddlePuzzle :: startPuzzle(){
+riddlePuzzle::riddlePuzzle() {
+    setName("Riddle Puzzle");
+}
 
-    cout << "**Lets solve a Riddle!!***" << endl;
+void riddlePuzzle::startPuzzle(ChatBox* cb, Map map) {
 
-    while (input != correctAnswer){
-        cout << "If two is company, and three is a crowd, what are four and five?" << endl;
-        cout << "Hint: the answer is an integer ;)" << endl;
-        cout << endl;
-        cout << "Enter '69' to give up OR"<< endl;
-        cout << "Enter your guess:";
-        cin >> input;
-        if (input == 69){
-            cout << endl;
-            cout << "You'll get it next time!!" << endl;
+    string input;
+    int int_input;
+
+    cb->enterMessage("***Lets solve a Riddle!!***");
+
+    while (true) {
+        cb->enterMessage("If two is company, and three is a crowd,");
+        cb->enterMessage("what are four and five?");
+        cb->enterMessage("Hint: the answer is an integer ;)");
+        cb->enterMessage("", "Enter '69' to give up OR");
+        system("CLS");
+        map.printMap();
+        cb->printChatBox();
+        cout << "\nEnter your guess: ";
+        getline(cin, input);
+        int_input = stoi(input);
+        if (int_input == 69) {
+            cb->enterMessage("", "You'll get it next time!!");
             break;
         }
-    }
-
-    if (input == correctAnswer){
-        cout << endl;
-        cout << "CONGRATULATIONS!!" << endl;
-        cout << "You solved the puzzle!" << endl;
-        cout << endl;
-        this -> setSolved();
+        if (int_input == correctAnswer) {
+            cout << endl;
+            cb->enterMessage("", "", "", "CONGRATULATIONS!!");
+            cb->enterMessage("", "You solved the puzzle!");
+            this->setSolved();
+            break;
+        }
     }
 }
 
 // Riddle Puzzle2 #5
-void riddlePuzzle2 :: startPuzzle(){
+riddlePuzzle2::riddlePuzzle2() {
+    setName("Riddle Puzzle 2");
+}
 
-    cout << "***Got another Riddle for ya!!***" << endl;
+void riddlePuzzle2::startPuzzle(ChatBox* cb, Map map) {
 
-    while (input != correctAnswer){
-        cout << endl;
-        cout << "2 plus 2 is 4 minus 1 that's _?. QUICK MATHH" << endl;
-        cout << endl;
-        cout << "Enter '69' to give up OR"<< endl;
-        cout << "Enter your guess:";
-        cin >> input;
-        if (input == 69){
+    string input;
+    int int_input;
+
+    cb->enterMessage("***Got another Riddle for ya!!***");
+
+    while (true) {
+        cb->enterMessage("", "2 plus 2 is 4, minus 1 that's _?.");
+        cb->enterMessage("QUICKKK MATHHHH");
+        cb->enterMessage("", "Enter '69' to give up OR");
+        system("CLS");
+        map.printMap();
+        cb->printChatBox();
+        cout << "\nEnter your guess: ";
+        getline(cin, input);
+        int_input = stoi(input);
+        if (int_input == 69) {
+            cb->enterMessage("", "You'll get it next time!!");
+            break;
+        }
+        if (int_input == correctAnswer) {
             cout << endl;
-            cout << "You'll get it next time!!" << endl;
+            cb->enterMessage("", "", "", "CONGRATULATIONS!!");
+            cb->enterMessage("", "You solved the puzzle!");
+            this->setSolved();
             break;
         }
     }
-
-    if (input == correctAnswer){
-        cout << endl;
-        cout << "CONGRATULATIONS!!" << endl;
-        cout << "You solved the puzzle!" << endl;
-        cout << endl;
-        this -> setSolved();
-    }
 }
 
-// Start random Puzzle function
-void randomPuzzle(Puzzle *puzzles[]){
-    int key;
-    srand (time(NULL));
-    key = (rand() % 5);
-    Puzzle* curPuzzle = puzzles[key];
+void initPuzzles(Puzzle* puzzles[]) {
 
-    if (curPuzzle->getSolved() == 0){
-        curPuzzle->startPuzzle();
-    } else {
-        randomPuzzle(puzzles);
-    }
+    lettersPuzzle* p1 = new lettersPuzzle();
+    arithmeticPuzzle* p2 = new arithmeticPuzzle();
+    lockbreakingPuzzle* p3 = new lockbreakingPuzzle();
+    riddlePuzzle* p4 = new riddlePuzzle();
+    riddlePuzzle2* p5 = new riddlePuzzle2();
+
+    puzzles[0] = p1;
+    puzzles[1] = p2;
+    puzzles[2] = p3;
+    puzzles[3] = p4;
+    puzzles[4] = p5;
 }
 
-bool unlockDoorCheck(Puzzle *puzzles[]){
-    int flag;
-    
-    for(int i=0; i < 5; i++){
-        if (puzzles[i]->getSolved() == 0){
+void randomPuzzle(Puzzle* puzzles[], ChatBox* cb) {
+    // int key;
+    // key = (rand() % 5);
+    // Puzzle* curPuzzle = puzzles[key];
+
+    // if (curPuzzle->getSolved() == 0){
+    //     curPuzzle->startPuzzle(&cb);
+    // } else {
+    //     randomPuzzle(puzzles, cb);
+    // }
+    // puzzles[0]->startPuzzle(cb);
+    // cb->enterMessage(puzzles[0]->getName());
+}
+
+int unlockDoorCheck(Puzzle* puzzles[]) {
+    int flag = 1;
+    Puzzle* currPuzzle;
+
+    for (int i = 0; i < 5; i++) {
+        currPuzzle = puzzles[i];
+        if (currPuzzle->getSolved() == false) {
             flag = 0;
             break;
+        }
+        else {
+            continue;
         }
     }
     return flag;
 }
-
-//Puzzle *puzzles[5];
-
-//lettersPuzzle puzzle1;
-//arithmeticPuzzle puzzle2;
-//lockbreakingPuzzle puzzle3;
-//riddlePuzzle puzzle4;
-//riddlePuzzle2 puzzle5;
-
-//int main(){
-
-//    puzzle1.setName("Letters Puzzle");
-//    puzzle2.setName("Arithmetic Puzzle");
-//    puzzle3.setName("Lockbreaking Puzzle");
-//    puzzle4.setName("Riddle Puzzle 1");
-//    puzzle5.setName("Riddle Puzzle 2");
-
-//    puzzles[0] = &puzzle1;
-//    puzzles[1] = &puzzle2;
-//    puzzles[2] = &puzzle3;
-//    puzzles[3] = &puzzle4;
-//    puzzles[4] = &puzzle5;
-
-//    do {
-//        // for(int i=0; i < 5; i++) {  
-//        // cout << puzzles[i]->getName() << "\n"; 
-//        // cout << "Solved: " << puzzles[i]->getSolved() << "\n\n";  
-//        // }
-//        randomPuzzle(puzzles);
-//    } while (unlockDoorCheck(puzzles) != 1);
-    
-//}
