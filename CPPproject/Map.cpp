@@ -192,9 +192,9 @@ void Map::fillRoomItem(struct createRoomItemArray *roomItemArray) {
 string Map::printItemAhead(string next_facing_item) {
     // return string of room item ahead of player
     if (next_facing_item.compare("]") == 0) {
-        next_facing_item = "Locked door ahead";
+        next_facing_item = "Door ahead";
     } else if (next_facing_item.compare("[") == 0) {
-        next_facing_item = "Unlocked door ahead";
+        next_facing_item = "Door ahead";
     } else if (next_facing_item.compare("h") == 0) {
         next_facing_item = "There is a chair ahead";
     } else if (next_facing_item.compare("T") == 0) {
