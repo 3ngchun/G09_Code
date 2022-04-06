@@ -53,12 +53,16 @@ int main() {
 
         system("CLS");
         player.printName();
+        cout << "\nUser Instruction Guide:";
+        cout << "\nDirection: up / down / left / right";
+        cout << "\nGive up: quit";
+        cout << "\nInteract with all room items to solve puzzles and escape the room!\n";
         map.printMap();
         map.resetItem(player.getX(), player.getY());
         chatBox->printChatBox();
         cout << "\nEnter next step: ";
         getline(cin, instruction);
-        if (instruction == "i quit bitch") {
+        if (instruction == "quit") {
             break;
         }
         else {
