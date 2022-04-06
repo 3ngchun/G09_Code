@@ -21,6 +21,8 @@ int main() {
     Bed b;
     Plant p;
     Light l;
+    Puzzle* puzzles[20];
+    initPuzzles(puzzles);
 
     cout << "Hi Adventurer, welcome to QuizLand!" << endl;
     do {
