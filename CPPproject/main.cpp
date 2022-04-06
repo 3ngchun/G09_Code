@@ -92,7 +92,7 @@ int main() {
                         randomPuzzle(puzzles, chatBox, map);
                     }
                 }
-                else if ((item == "]") && (instruction == "win") && (unlockDoorCheck(puzzles) == 1)) {
+                else if ((item == "[") && (instruction == "win") && (unlockDoorCheck(puzzles) == 1)) {
                     break;
                 }
             }
