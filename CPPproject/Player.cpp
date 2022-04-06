@@ -1,6 +1,5 @@
 #include <stdexcept>
 #include "Player.h"
-#include "RoomItem.h"
 #include <iostream>
 #include "Map.h"
 
@@ -57,13 +56,6 @@ void Player::printPlayerIcon() {
 }
 
 void Player::printDirection(struct createRoomItemArray *roomItemArray) {
-    LockedDoor ld;
-    UnlockedDoor ud;
-    Table t;
-    Chair c;
-    Bed b;
-    Plant p;
-    Light l;
     if (direction == "up") {
         bool checked = false;
         for (int i = 0; i < 6; i++) {
@@ -88,7 +80,6 @@ void Player::printDirection(struct createRoomItemArray *roomItemArray) {
         }
         if (getY() != 15 && !checked) {
             setY(getY() + 1);
-        } else { ;
         }
         setPlayerIcon('v');
     } else if (direction == "right") {
