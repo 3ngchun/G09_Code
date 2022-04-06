@@ -74,11 +74,7 @@ void Player::printDirection() {
             setY(getY());
         }
         else if (getY() != 0) {
-            //chatBox.enterMessage("\nGo Up!");
             setY(getY() - 1);
-        }
-        else {
-            //cout << "\nYou have bumped into a wall..." << endl;
         }
         setPlayerIcon('^');
     }
@@ -93,11 +89,9 @@ void Player::printDirection() {
             setY(getY());
         }
         else if (getY() != 15) {
-            //cout << "\nGo Down!" << endl;
             setY(getY() + 1);
         }
-        else {
-            //cout << "\nYou have bumped into a wall..." << endl;
+        else {;
         }
         setPlayerIcon('v');
     }
@@ -112,11 +106,7 @@ void Player::printDirection() {
             setY(getY());
         }
         else if (getX() != 15) {
-            //cout << "\nGo Right!" << endl;
             setX(getX() + 1);
-        }
-        else {
-            //cout << "\nYou have bumped into a wall..." << endl;
         }
         setPlayerIcon('>');
     }
@@ -131,20 +121,9 @@ void Player::printDirection() {
             setY(getY());
         }
         else if (getX() != 0) {
-            //chatBox.enterMessage("Go Left!");
             setX(getX() - 1);
         }
-        else {
-            //cout << "\nYou have bumped into a wall..." << endl;
-        }
         setPlayerIcon('<');
-    }
-    else if (direction == "giveup") {
-        cout << "\nYou gave up... Exiting game.";
-    }
-    else {
-        cout << "\nPlease enter one of the following: (Up/Down/Left/Right)" << endl;
-        //cout << "Where do you want to go?" << endl;
     }
 }
 
