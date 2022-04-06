@@ -4,9 +4,6 @@
 char RoomItems::printinfo() {
 	return 0;
 }
-string RoomItems::getCMP(){
-	return this->item;
-}
 string RoomItems::getItemName() {
 	return " ";
 }
@@ -152,17 +149,28 @@ void Plant::setY(int y) {
 	this->y = y;
 }
 
-void Light::setLightIcon(char item) {
-	this->item = item;
-}
 
-char Light::getLightIcon() {
-	return item;
-}
+
+//void Light::setLightIcon(string item) {
+//	this->item = item;
+//}
+//
+//string Light::getLightIcon() {
+//	return item;
+//}
+//
+//string Light::printinfo()
+//{
+//	return getLightIcon();
+//}
+//string Light::getItemName() {
+//	return itemName;
+//}
 
 char Light::printinfo()
 {
-	return getLightIcon();
+	char item = '*';
+	return item;
 }
 string Light::getItemName() {
 	return itemName;
@@ -180,15 +188,15 @@ int Light::getY() {
 void Light::setY(int x) {
 	this->y = y;
 }
-void Light::turnLightsOn() {
-	if (on == false) {
-		on = true;
-		setLightIcon('*');
-	}
-}
-void Light::turnLightsOff() {
-	if (on == true) {
-		on = false;
-		setLightIcon('.');
-	}
-}
+//void Light::turnLightsOn() {
+//	if (on == false) {
+//		on = true;
+//		setLightIcon("*");
+//	}
+//}
+//void Light::turnLightsOff() {
+//	if (on == true) {
+//		on = false;
+//		setLightIcon(".");
+//	}
+//}	
