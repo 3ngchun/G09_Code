@@ -14,6 +14,7 @@
 #include "RoomItem.h"
 
 struct createRoomItemArray{
+    // to make struct array of room item attribute
     int x;
     int y;
     char item;
@@ -23,6 +24,7 @@ const int CHATBOX_SIZE = 6;
 using namespace std;
 class ChatBox;
 class Map {
+    friend void printScreen(Map,ChatBox);
 private:
     char mapping[MAP_SIZE][MAP_SIZE]{};
     char space = ' ';
@@ -43,6 +45,7 @@ public:
 };
 
 class ChatBox {
+    friend void printScreen(Map,ChatBox);
 private:
     char wall = '|';
     char space = ' ';
@@ -51,21 +54,14 @@ private:
     void createChatBox();
     void bumpMessage(int lines);
     void clearArray(int lines);
-
 public:
     ChatBox();
     void printChatBox();
-    // one line intake
     void enterMessage(string line1);
-    // two line intake
     void enterMessage(string line1, string line2);
-    // three line intake
     void enterMessage(string line1, string line2, string line3);
-    // four line intake
     void enterMessage(string line1, string line2, string line3, string line4);
-    // five line intake
     void enterMessage(string line1, string line2, string line3, string line4, string line5);
-    // six line intake (max)
     void enterMessage(string line1, string line2, string line3, string line4, string line5, string line6);
 };
 
