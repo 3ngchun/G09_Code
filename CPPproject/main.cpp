@@ -6,7 +6,13 @@
 #include "Puzzles.h"
 
 using namespace std;
+void printScreen(Map map, ChatBox chatBox){
+    // friend function to print game background as a set
+    map.printMap();
+    chatBox.printChatBox();
+}
 int main() {
+    // initialise objects
     Map map;
     ChatBox cb;
     ChatBox* chatBox = &cb;
@@ -19,6 +25,7 @@ int main() {
 
     cout << "Hi Adventurer, welcome to QuizLand!" << endl;
     do {
+        // welcome message and get player name
         try {
             cin >> player;
         }
@@ -32,30 +39,27 @@ int main() {
         }
     } while (player.getName() == " ");
 
+    // prepare room item
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
     createRoomItemArray roomItemArray[6];
     map.fillRoomItem(roomItemArray);
-
+    chatBox->enterMessage("Are you ready to start your adventure?");
     while (true) {
-
-        system("CLS");
+        // game loop
+        system("CLS"); // refresh screen
         player.printName();
-        cout << "\nUser Instruction Guide:";
-        cout << "\nDirection: up / down / left / right";
-        cout << "\nGive up: quit";
-        cout << "\nInteract with all room items to solve puzzles and escape the room!\n";
-        map.printMap();
-        map.resetItem(player.getX(), player.getY());
-        chatBox->printChatBox();
+        printScreen(map, *chatBox);  // game background
+        map.resetItem(player.getX(), player.getY()); // remove player trace
         cout << "\nEnter next step: ";
         getline(cin, instruction);
         if (instruction == "quit") {
+            // if quit, stop loop
             break;
         }
         else {
-            player.setDirection(instruction);
+            player.setDirection(instruction); // if player move, set change player icon direction
             player.printDirection();
-            map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
+            map.setItem(player.getX(), player.getY(), player.getPlayerIcon()); // set player onto map
 
             if (map.checkMap(player) == "out") {
                 chatBox->enterMessage(map.isWhatItemAhead(player));
