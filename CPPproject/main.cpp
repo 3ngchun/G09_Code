@@ -6,22 +6,14 @@
 #include "Puzzles.h"
 
 using namespace std;
-
 int main() {
-
     Map map;
     ChatBox cb;
     ChatBox* chatBox = &cb;
     string instruction;
     string name;
     Player player;
-    LockedDoor ld;
     UnlockedDoor ud;
-    Table t;
-    Chair c;
-    Bed b;
-    Plant p;
-    Light l;
     Puzzle* puzzles[20];
     initPuzzles(puzzles);
 
@@ -41,13 +33,9 @@ int main() {
     } while (player.getName() == " ");
 
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
+    createRoomItemArray roomItemArray[6];
+    map.fillRoomItem(roomItemArray);
 
-    map.setItem(ld.getX(), ld.getY(), ld.printinfo());
-    map.setItem(t.getX(), t.getY(), t.printinfo());
-    map.setItem(c.getX(), c.getY(), c.printinfo());
-    map.setItem(b.getX(), b.getY(), b.printinfo());
-    map.setItem(p.getX(), p.getY(), p.printinfo());
-    map.setItem(l.getX(), l.getY(), l.printinfo());
     while (true) {
 
         system("CLS");
