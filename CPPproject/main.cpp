@@ -42,14 +42,14 @@ int main() {
 
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
 
+    map.setItem(ld.getX(), ld.getY(), ld.printinfo());
+    //map.setItem(0, 0, ud.printinfo());
+    map.setItem(t.getX(), t.getY(), t.printinfo());
+    map.setItem(c.getX(), c.getY(), c.printinfo());
+    map.setItem(b.getX(), b.getY(), b.printinfo());
+    map.setItem(p.getX(), p.getY(), p.printinfo());
+    map.setItem(l.getX(), l.getY(), l.printinfo());
     while (true) {
-        map.setItem(ld.getX(), ld.getY(), ld.printinfo());
-        //map.setItem(0, 0, ud.printinfo());
-        map.setItem(t.getX(), t.getY(), t.printinfo());
-        map.setItem(c.getX(), c.getY(), c.printinfo());
-        map.setItem(b.getX(), b.getY(), b.printinfo());
-        map.setItem(p.getX(), p.getY(), p.printinfo());
-        map.setItem(l.getX(), l.getY(), l.printinfo());
 
         system("CLS");
         player.printName();
