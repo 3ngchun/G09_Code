@@ -43,7 +43,6 @@ int main() {
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
 
     map.setItem(ld.getX(), ld.getY(), ld.printinfo());
-    //map.setItem(0, 0, ud.printinfo());
     map.setItem(t.getX(), t.getY(), t.printinfo());
     map.setItem(c.getX(), c.getY(), c.printinfo());
     map.setItem(b.getX(), b.getY(), b.printinfo());
@@ -83,7 +82,8 @@ int main() {
                         if (unlockDoorCheck(puzzles) != 1) { //check if all puzzles solved
                             chatBox->enterMessage("", "Door is locked :(");
                         }
-                        else { //else print locked
+                        else { //else print unlocked
+                            map.setItem(0, 0, ud.printinfo());
                             chatBox->enterMessage("", "Hoorah! Door is unlocked!!!!");
                             chatBox->enterMessage("", "Enter 'win' to complete the game");
                         }
