@@ -11,6 +11,13 @@
 #include "RoomItem.h"
 #include "array"
 #include "vector"
+#include "RoomItem.h"
+
+struct createRoomItemArray{
+    int x;
+    int y;
+    char item;
+};
 #define MAP_SIZE 16
 const int CHATBOX_SIZE = 6;
 using namespace std;
@@ -28,6 +35,7 @@ public:
     string checkMap(Player);
     string isOutOfBound(Player);
     string printItemAhead(string next_facing_item);
+    void fillRoomItem(struct createRoomItemArray*);
     void printMap();
     void setItem(int x, int y, char item);
     char getItem(int x, int y);
