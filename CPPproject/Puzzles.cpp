@@ -57,6 +57,7 @@ void lettersPuzzle::startPuzzle(ChatBox* cb, Map map) {
             cb->enterMessage("", "", "", "CONGRATULATIONS!!");
             cb->enterMessage("", "You solved the puzzle!");
             this->setSolved();
+
             break;
         }
     }
@@ -251,6 +252,23 @@ void initPuzzles(Puzzle* puzzles[]) {
     puzzles[2] = p3;
     puzzles[3] = p4;
     puzzles[4] = p5;
+}
+
+int numPuzzleSolved(Puzzle* puzzles[]) {
+    int solvedPuzzles = 0;
+    Puzzle* currPuzzle;
+
+    for (int i = 0; i < 5; i++) {
+        currPuzzle = puzzles[i];
+        if (currPuzzle->getSolved() == true) {
+            solvedPuzzles++;
+            break;
+        }
+        else {
+            continue;
+        }
+    }
+    return solvedPuzzles;
 }
 
 void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map) {

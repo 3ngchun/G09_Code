@@ -71,6 +71,9 @@ void initPuzzles(Puzzle* puzzles[]);
 // Start random Puzzle function
 void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map);
 
+// check num puzzles solved
+int numPuzzleSolved(Puzzle* puzzles[]);
+
 // check all puzzles solved, unlock door
 int unlockDoorCheck(Puzzle* puzzles[]);
 
