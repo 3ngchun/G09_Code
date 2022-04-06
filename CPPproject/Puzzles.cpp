@@ -272,6 +272,7 @@ int numPuzzleSolved(Puzzle* puzzles[]) {
 
 void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map) {
     int key;
+    //srand(time(NULL));
     key = (rand() % 5);
     Puzzle* curPuzzle = puzzles[key];
 
