@@ -51,7 +51,7 @@ int main() {
         getline(cin, instruction);
         if (instruction == "quit") {
             break;
-        }
+        } //ec
         else {
             player.setDirection(instruction);
             player.printDirection();
