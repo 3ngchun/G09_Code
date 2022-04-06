@@ -80,7 +80,24 @@ int main() {
                         }
                     }
                     else { // If not door, run puzzle
+                        int beforePuzzles;
+                        int afterPuzzles;
+                        beforePuzzles = numPuzzleSolved(puzzles);
                         randomPuzzle(puzzles, chatBox, map);
+                        afterPuzzles = numPuzzleSolved(puzzles);
+                        if (afterPuzzles > beforePuzzles) {
+                            char* isWhatItemAhead = &map.isWhatItemAhead(player)[0];
+                            for (int i = 0; i < 6; i++) {
+                                if (roomItemArray[i].item == *isWhatItemAhead) {
+                                    map.resetItem(roomItemArray[i].x, roomItemArray[i].y);
+                                    roomItemArray[i].item = '0';
+                                    roomItemArray[i].x = -1;
+                                    roomItemArray[i].y = -1;
+                                    break;
+                                }
+                            }
+                        }
+
                     }
                 }
                 else if ((item == "[") && (instruction == "win") && (unlockDoorCheck(puzzles) == 1)) {
@@ -93,9 +110,10 @@ int main() {
             continue;
         }
     }
-    // win sequence
+    // win and exit sequence
     system("CLS");
-    std::cout << R"(
+    if (instruction == "win") {
+        std::cout << R"(
                         __  ______  __  __   _       _______   ______                          
                         \ \/ / __ \/ / / /  | |     / /  _/ | / / / /                          
                          \  / / / / / / /   | | /| / // //  |/ / / /                           
@@ -109,7 +127,18 @@ int main() {
 /_/ /_/ /_/\__,_/_/ /_/_/|_/____/  /_/  \____/_/     /_/   /_/\__,_/\__, /_/_/ /_/\__, (_|_)   
                                                                    /____/        /____/        
 )" << '\n';
+    }
+    else {
+        std::cout << R"(
+                                                             _       __
+   ________  ___     __  ______  __  __   ____ _____ _____ _(_)___  / /
+  / ___/ _ \/ _ \   / / / / __ \/ / / /  / __ `/ __ `/ __ `/ / __ \/ / 
+ (__  )  __/  __/  / /_/ / /_/ / /_/ /  / /_/ / /_/ / /_/ / / / / /_/  
+/____/\___/\___/   \__, /\____/\__,_/   \__,_/\__, /\__,_/_/_/ /_(_)   
+                  /____/                     /____/                    
 
+)" << '\n';
+    }
 
     return 0;
 }
