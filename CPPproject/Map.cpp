@@ -3,9 +3,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "RoomItem.h"
-
 class ChatBox;
-
 void Map::createMap() {
 
     for (auto &i: this->mapping) {
@@ -112,7 +110,6 @@ string Map::checkMap(Player player) {
     }
     return next_facing_item;
 }
-
 string Map::isWhatItemAhead(Player player) {
     // return item char ahead of player in string type
     int x = player.getX();
@@ -154,7 +151,36 @@ string Map::isWhatItemAhead(Player player) {
     }
     return next_facing_item;
 }
-
+void Map::fillRoomItem(struct createRoomItemArray *roomItemArray){
+    LockedDoor ld;
+    UnlockedDoor ud;
+    Table t;
+    Chair c;
+    Bed b;
+    Plant p;
+    Light l;
+    roomItemArray[0].x = ld.getX();
+    roomItemArray[0].y = ld.getY();
+    roomItemArray[0].item =ld.printinfo();
+    roomItemArray[1].x=t.getX();
+    roomItemArray[1].y=t.getY();
+    roomItemArray[1].item=t.printinfo();
+    roomItemArray[2].x=c.getX();
+    roomItemArray[2].y=c.getY();
+    roomItemArray[2].item=c.printinfo();
+    roomItemArray[3].x=b.getX();
+    roomItemArray[3].y=b.getY();
+    roomItemArray[3].item=b.printinfo();
+    roomItemArray[4].x=p.getX();
+    roomItemArray[4].y=p.getY();
+    roomItemArray[4].item=b.printinfo();
+    roomItemArray[5].x=l.getX();
+    roomItemArray[5].y=l.getY();
+    roomItemArray[5].item=l.printinfo();
+    for (int i = 0; i < 6; i++){
+        setItem(roomItemArray[i].x, roomItemArray[i].y, roomItemArray[i].item);
+    }
+}
 string Map::printItemAhead(string next_facing_item) {
     if (next_facing_item.compare("]") == 0) {
         next_facing_item = "Locked door ahead";
