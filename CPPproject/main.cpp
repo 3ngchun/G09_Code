@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Map.h"
 #include "RoomItem.h"
+#include "Puzzles.h"
 
 using namespace std;
 
