@@ -58,9 +58,8 @@ int main() {
         }
         else {
             player.setDirection(instruction); // if player move, set change player icon direction
-            player.printDirection();
+            player.printDirection(roomItemArray);
             map.setItem(player.getX(), player.getY(), player.getPlayerIcon()); // set player onto map
-
             if (map.checkMap(player) == "out") {
                 chatBox->enterMessage(map.isWhatItemAhead(player));
             }
