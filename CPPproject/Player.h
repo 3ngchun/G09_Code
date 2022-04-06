@@ -3,6 +3,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
+#include "Map.h"
 using namespace std;
 class Player {
     friend istream& operator >> (istream&, Player&);
@@ -23,7 +24,7 @@ public:
     void setY(int);
     char getPlayerIcon();
     void setPlayerIcon(char);
-    void printDirection();
+    void printDirection(struct createRoomItemArray*);
     void printName();
     void printPlayerIcon();
 };
