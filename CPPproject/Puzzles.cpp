@@ -262,7 +262,6 @@ int numPuzzleSolved(Puzzle* puzzles[]) {
         currPuzzle = puzzles[i];
         if (currPuzzle->getSolved() == true) {
             solvedPuzzles++;
-            break;
         }
         else {
             continue;
