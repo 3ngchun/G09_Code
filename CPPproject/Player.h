@@ -25,7 +25,8 @@ public:
     char getPlayerIcon();
     void setPlayerIcon(char);
     void printDirection(struct createRoomItemArray*);
-    void printName();
+    string printName();
+    void userGuide();
     void printPlayerIcon();
 };
 

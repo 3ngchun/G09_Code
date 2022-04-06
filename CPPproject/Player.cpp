@@ -43,13 +43,18 @@ string Player::getDirection() {
     return direction;
 }
 
-void Player::printName() {
-    cout << "Hi " << getName() << ", welcome..." << endl;
+string Player::printName() {
+    string userName = "Hi " + getName() + ", welcome...";
+    return userName;
+}
+
+void Player::userGuide() {
     cout << "\nUser Instruction Guide:";
     cout << "\nDirection: up / down / left / right";
     cout << "\nGive up: quit";
     cout << "\nInteract with all room items to solve puzzles and escape the room!\n";
 }
+
 
 void Player::printPlayerIcon() {
     cout << getPlayerIcon() << endl;
