@@ -32,7 +32,6 @@ public:
 class arithmeticPuzzle : public Puzzle {
 private:
     int correctAnswer = 8;
-    int input;
 public:
     arithmeticPuzzle();
     void startPuzzle(ChatBox*, Map);
@@ -41,7 +40,6 @@ public:
 class lockbreakingPuzzle : public Puzzle {
 private:
     int correctAnswer = 7;
-    int input;
 public:
     lockbreakingPuzzle();
     void startPuzzle(ChatBox*, Map);
@@ -50,7 +48,6 @@ public:
 class riddlePuzzle : public Puzzle {
 private:
     int correctAnswer = 9;
-    int input;
 public:
     riddlePuzzle();
     void startPuzzle(ChatBox*, Map);
@@ -59,7 +56,6 @@ public:
 class riddlePuzzle2 : public Puzzle {
 private:
     int correctAnswer = 3;
-    int input;
 public:
     riddlePuzzle2();
     void startPuzzle(ChatBox*, Map);

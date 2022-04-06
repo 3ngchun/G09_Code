@@ -71,7 +71,6 @@ arithmeticPuzzle::arithmeticPuzzle() {
 void arithmeticPuzzle::startPuzzle(ChatBox* cb, Map map) {
     string input;
     int int_input;
-    bool is_ok = true;
 
     cb->enterMessage("***Welcome to the Arithmetic Puzzle!!***");
 
@@ -86,7 +85,6 @@ void arithmeticPuzzle::startPuzzle(ChatBox* cb, Map map) {
         getline(cin, input);
         try {
             int_input = stoi(input);
-            is_ok = true; //is_ok is only set to true when stoi(...) was successfull
         }
         catch (exception& err)
         {
@@ -115,7 +113,6 @@ void lockbreakingPuzzle::startPuzzle(ChatBox* cb, Map map) {
 
     string input;
     int int_input;
-    bool is_ok = false;
 
     cb->enterMessage("***Welcome to the Lockbreaking Puzzle!!***");
 
@@ -130,7 +127,6 @@ void lockbreakingPuzzle::startPuzzle(ChatBox* cb, Map map) {
         getline(cin, input);
         try {
             int_input = stoi(input);
-            is_ok = true; //is_ok is only set to true when stoi(...) was successfull
         }
         catch (exception& err)
         {
@@ -159,7 +155,6 @@ void riddlePuzzle::startPuzzle(ChatBox* cb, Map map) {
 
     string input;
     int int_input;
-    bool is_ok = false;
 
     cb->enterMessage("***Lets solve a Riddle!!***");
 
@@ -175,7 +170,6 @@ void riddlePuzzle::startPuzzle(ChatBox* cb, Map map) {
         getline(cin, input);
         try {
             int_input = stoi(input);
-            is_ok = true; //is_ok is only set to true when stoi(...) was successfull
         }
         catch (exception& err)
         {
@@ -204,7 +198,6 @@ void riddlePuzzle2::startPuzzle(ChatBox* cb, Map map) {
 
     string input;
     int int_input;
-    bool is_ok = false;
 
     cb->enterMessage("***Got another Riddle for ya!!***");
 
@@ -219,7 +212,6 @@ void riddlePuzzle2::startPuzzle(ChatBox* cb, Map map) {
         getline(cin, input);
         try {
             int_input = stoi(input);
-            is_ok = true; //is_ok is only set to true when stoi(...) was successfull
         }
         catch (exception& err)
         {
