@@ -48,21 +48,18 @@ int main() {
         // game loop
         system("CLS"); // refresh screen
         player.printName();
-        cout << "\nUser Instruction Guide:";
-        cout << "\nDirection: up / down / left / right";
-        cout << "\nGive up: quit";
-        cout << "\nInteract with all room items to solve puzzles and escape the room!\n";
         printScreen(map, *chatBox);  // game background
-        map.resetItem(player.getX(), player.getY());
+        map.resetItem(player.getX(), player.getY()); // remove player trace
         cout << "\nEnter next step: ";
         getline(cin, instruction);
         if (instruction == "quit") {
+            // if quit, stop loop
             break;
         }
         else {
-            player.setDirection(instruction);
+            player.setDirection(instruction); // if player move, set change player icon direction
             player.printDirection();
-            map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
+            map.setItem(player.getX(), player.getY(), player.getPlayerIcon()); // set player onto map
 
             if (map.checkMap(player) == "out") {
                 chatBox->enterMessage(map.isWhatItemAhead(player));

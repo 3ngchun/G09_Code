@@ -23,6 +23,7 @@ struct createRoomItemArray{
 const int CHATBOX_SIZE = 6;
 using namespace std;
 class ChatBox;
+class Player;
 class Map {
     friend void printScreen(Map,ChatBox);
 private:
@@ -36,12 +37,12 @@ public:
     string isWhatItemAhead(Player);
     string checkMap(Player);
     string isOutOfBound(Player);
-    string printItemAhead(string next_facing_item);
+    string printItemAhead(string);
     void fillRoomItem(struct createRoomItemArray*);
     void printMap();
-    void setItem(int x, int y, char item);
-    char getItem(int x, int y);
-    void resetItem(int x, int y);
+    void setItem(int, int, char);
+    char getItem(int, int);
+    void resetItem(int, int);
 };
 
 class ChatBox {
@@ -52,17 +53,17 @@ private:
     const int messageLength = (MAP_SIZE * 3) - 2;
     char boxLines[CHATBOX_SIZE][(MAP_SIZE * 3) - 2]{};
     void createChatBox();
-    void bumpMessage(int lines);
-    void clearArray(int lines);
+    void bumpMessage(int);
+    void clearArray(int);
 public:
     ChatBox();
     void printChatBox();
-    void enterMessage(string line1);
-    void enterMessage(string line1, string line2);
-    void enterMessage(string line1, string line2, string line3);
-    void enterMessage(string line1, string line2, string line3, string line4);
-    void enterMessage(string line1, string line2, string line3, string line4, string line5);
-    void enterMessage(string line1, string line2, string line3, string line4, string line5, string line6);
+    void enterMessage(string);
+    void enterMessage(string, string);
+    void enterMessage(string, string, string);
+    void enterMessage(string, string, string, string);
+    void enterMessage(string, string, string, string, string);
+    void enterMessage(string, string, string, string, string, string);
 };
 
 #endif 

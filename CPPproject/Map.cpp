@@ -5,7 +5,7 @@
 #include "RoomItem.h"
 
 class ChatBox;
-
+class Player;
 void Map::createMap() {
 
     for (auto &i: this->mapping) {
