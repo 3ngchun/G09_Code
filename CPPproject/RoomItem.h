@@ -130,8 +130,8 @@ private:
 	string item ="*";
 public:
 	string getItemName();
-	void setLightIcon(char);
-	char getLightIcon();
+	//void setLightIcon(string);
+	//string getLightIcon();
 	char printinfo();
 	void turnLightsOn();
 	void turnLightsOff();
