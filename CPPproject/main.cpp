@@ -43,11 +43,13 @@ int main() {
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
     createRoomItemArray roomItemArray[6];
     map.fillRoomItem(roomItemArray);
+    chatBox->enterMessage(player.printName());
     chatBox->enterMessage("Are you ready to start your adventure?");
     while (true) {
         // game loop
         system("CLS"); // refresh screen
         player.printName();
+        player.userGuide();
         printScreen(map, *chatBox);  // game background
         map.resetItem(player.getX(), player.getY()); // remove player trace
         cout << "\nEnter next step: ";
