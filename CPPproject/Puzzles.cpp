@@ -221,18 +221,17 @@ void initPuzzles(Puzzle* puzzles[]) {
     puzzles[4] = p5;
 }
 
-void randomPuzzle(Puzzle* puzzles[], ChatBox* cb) {
-    // int key;
-    // key = (rand() % 5);
-    // Puzzle* curPuzzle = puzzles[key];
+void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map) {
+    int key;
+    key = (rand() % 5);
+    Puzzle* curPuzzle = puzzles[key];
 
-    // if (curPuzzle->getSolved() == 0){
-    //     curPuzzle->startPuzzle(&cb);
-    // } else {
-    //     randomPuzzle(puzzles, cb);
-    // }
-    // puzzles[0]->startPuzzle(cb);
-    // cb->enterMessage(puzzles[0]->getName());
+    if (curPuzzle->getSolved() == 0) {
+        curPuzzle->startPuzzle(cb, map);
+    }
+    else {
+        randomPuzzle(puzzles, cb, map);
+    }
 }
 
 int unlockDoorCheck(Puzzle* puzzles[]) {

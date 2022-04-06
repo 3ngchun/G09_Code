@@ -26,7 +26,7 @@ private:
     string scrambled = "GAPMGNIRORM";
 public:
     lettersPuzzle();
-    void startPuzzle(ChatBox*, Map) override;
+    void startPuzzle(ChatBox*, Map);
 };
 
 class arithmeticPuzzle : public Puzzle {
@@ -69,7 +69,7 @@ public:
 void initPuzzles(Puzzle* puzzles[]);
 
 // Start random Puzzle function
-void randomPuzzle(Puzzle* puzzles[], ChatBox* cb);
+void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map);
 
 // check all puzzles solved, unlock door
 int unlockDoorCheck(Puzzle* puzzles[]);
