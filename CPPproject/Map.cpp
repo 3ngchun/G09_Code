@@ -180,7 +180,7 @@ void Map::fillRoomItem(struct createRoomItemArray *roomItemArray) {
     roomItemArray[3].item = b.printinfo();
     roomItemArray[4].x = p.getX();
     roomItemArray[4].y = p.getY();
-    roomItemArray[4].item = b.printinfo();
+    roomItemArray[4].item = p.printinfo();
     roomItemArray[5].x = l.getX();
     roomItemArray[5].y = l.getY();
     roomItemArray[5].item = l.printinfo();
