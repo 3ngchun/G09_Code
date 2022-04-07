@@ -55,7 +55,6 @@ void Player::userGuide() {
     cout << "\nInteract with all room items to solve puzzles and escape the room!\n";
 }
 
-
 void Player::printPlayerIcon() {
     cout << getPlayerIcon() << endl;
 }

@@ -19,6 +19,7 @@ int RoomItems::getY() {
 void RoomItems::setY(int y) {
 	this->y = y;
 }
+
 char LockedDoor::printinfo() {
 	char item = ']';
 	return item;
@@ -26,7 +27,6 @@ char LockedDoor::printinfo() {
 string LockedDoor::getItemName() {
 	return itemName;
 }
-
 int LockedDoor::getX() {
 	return x;
 }
@@ -47,7 +47,6 @@ char UnlockedDoor::printinfo() {
 string UnlockedDoor::getItemName() {
 	return itemName;
 }
-
 int UnlockedDoor::getX() {
 	return x;
 }
@@ -69,7 +68,6 @@ char Chair::printinfo()
 string Chair::getItemName() {
 	return itemName;
 }
-
 int Chair::getX() {
 	return x;
 }
@@ -91,7 +89,6 @@ char Table::printinfo()
 string Table::getItemName() {
 	return itemName;
 }
-
 int Table::getX() {
 	return x;
 }
@@ -113,7 +110,6 @@ char Bed::printinfo()
 string Bed::getItemName() {
 	return itemName;
 }
-
 int Bed::getX() {
 	return x;
 }
@@ -135,7 +131,6 @@ char Plant::printinfo()
 string Plant::getItemName() {
 	return itemName;
 }
-
 int Plant::getX() {
 	return x;
 }
@@ -149,24 +144,6 @@ void Plant::setY(int y) {
 	this->y = y;
 }
 
-
-
-//void Light::setLightIcon(string item) {
-//	this->item = item;
-//}
-//
-//string Light::getLightIcon() {
-//	return item;
-//}
-//
-//string Light::printinfo()
-//{
-//	return getLightIcon();
-//}
-//string Light::getItemName() {
-//	return itemName;
-//}
-
 char Light::printinfo()
 {
 	char item = '*';
@@ -175,7 +152,6 @@ char Light::printinfo()
 string Light::getItemName() {
 	return itemName;
 }
-
 int Light::getX() {
 	return x;
 }
@@ -188,15 +164,3 @@ int Light::getY() {
 void Light::setY(int x) {
 	this->y = y;
 }
-//void Light::turnLightsOn() {
-//	if (on == false) {
-//		on = true;
-//		setLightIcon("*");
-//	}
-//}
-//void Light::turnLightsOff() {
-//	if (on == true) {
-//		on = false;
-//		setLightIcon(".");
-//	}
-//}	

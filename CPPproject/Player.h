@@ -4,7 +4,9 @@
 #define PLAYER_H
 #include <string>
 #include "Map.h"
+
 using namespace std;
+
 class Player {
     friend istream& operator >> (istream&, Player&);
 private:
