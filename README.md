@@ -3,12 +3,12 @@
 
 ### Video demonstration link:
 
-## Download and run code:
+## Download, compile and run code:
 1. Download ZIP from github: https://github.com/3ngchun/ICT1009_part2_cpp
 2. Unzip the ZIP file
 3. Open command prompt(CMD) and change the directory to the *'CPPproject'* folder
-4. Run the command: **'g++ *.cpp -o main.exe'** to compile the code files
-5. Once compiled, run the command **'.\main.exe'** to begin the game
+4. Run the command: 'g++ *.cpp -o main.exe' to compile the code files
+5. Once compiled, run the command '.\main.exe' to begin the game
 
 ## User Instruction Guide:
 1. To move the player: 'up' / 'down' / 'left' / 'right' 
