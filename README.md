@@ -24,3 +24,10 @@
 ## At the end of the game:
 1. Players will need to interact with the door to unlock it after solving all puzzles
 2. Key in 'win' for a celebratory message to end the game
+
+## Contributors:
+1. Tan Shireen | 2102432@sit.singaporetech.edu.sg
+2. Iphigena Peh Yuxi | 2102744@sit.singaporetech.edu.sg
+3. Ng Eng Chun **(Team Lead)** | 2103192@sit.singaporetech.edu.sg
+4. Sim Yu Cheng | 2102520@sit.singaporetech.edu.sg
+5. Shaun Sartra Varghese | 2102172@sit.singaporetech.edu.sg
