@@ -23,7 +23,7 @@ string Map::isOutOfBound(Player player) {
     // check item ahead of player is out of bound or what item is it
     int x = player.getX();
     int y = player.getY();
-    char face = player.getPlayerIcon();
+    char face = player.getPlayerIcon(); // which direction player is facing
     string next_facing_item;
     switch (face) {
         case '^':
@@ -58,14 +58,14 @@ string Map::isOutOfBound(Player player) {
             next_facing_item = this->space;
             break;
     }
-    return next_facing_item;
+    return next_facing_item; // return either "out" or the item char in front of player or empty space
 }
 
 string Map::checkMap(Player player) {
     // return item ahead of player
     int x = player.getX();
     int y = player.getY();
-    char face = player.getPlayerIcon();
+    char face = player.getPlayerIcon(); // which direction player is facing
     string next_facing_item;
     switch (face) {
         case '^':
@@ -112,14 +112,14 @@ string Map::checkMap(Player player) {
             next_facing_item = this->space;
             break;
     }
-    return next_facing_item;
+    return next_facing_item; // return either "item" or "out" or spacing
 }
 
 string Map::isWhatItemAhead(Player player) {
     // return item char ahead of player in string type
     int x = player.getX();
     int y = player.getY();
-    char face = player.getPlayerIcon();
+    char face = player.getPlayerIcon(); // which direction player is facing
     string next_facing_item;
     switch (face) {
         case '^':
@@ -154,11 +154,12 @@ string Map::isWhatItemAhead(Player player) {
             next_facing_item = this->space;
             break;
     }
-    return next_facing_item;
+    return next_facing_item; // return either item char in front of player or out of bound or spacing
 }
 
 void Map::fillRoomItem(struct createRoomItemArray *roomItemArray) {
     // fill struct array with room items and set them onto map
+    // initialise all room item object
     LockedDoor ld;
     UnlockedDoor ud;
     Table t;
@@ -166,6 +167,7 @@ void Map::fillRoomItem(struct createRoomItemArray *roomItemArray) {
     Bed b;
     Plant p;
     Light l;
+    // add room item attribute to struct array
     roomItemArray[0].x = ld.getX();
     roomItemArray[0].y = ld.getY();
     roomItemArray[0].item = ld.printinfo();
@@ -185,6 +187,7 @@ void Map::fillRoomItem(struct createRoomItemArray *roomItemArray) {
     roomItemArray[5].y = l.getY();
     roomItemArray[5].item = l.printinfo();
     for (int i = 0; i < 6; i++) {
+        // place room item onto map
         setItem(roomItemArray[i].x, roomItemArray[i].y, roomItemArray[i].item);
     }
 }
@@ -218,12 +221,14 @@ void Map::printMap() {
                 printf("\n");
             }
             if (i[j] == '^' || i[j] == 'v' || i[j] == '<' || i[j] == '>') {
+                // color coating on player
                 printf("[");
                 SetConsoleTextAttribute(hConsole, 10);
                 printf("%c", i[j]);
                 SetConsoleTextAttribute(hConsole, 7);
                 printf("]");
             } else {
+                // the rest of map
                 SetConsoleTextAttribute(hConsole, 7);
                 printf("[%c]", i[j]);
 
@@ -268,16 +273,16 @@ void ChatBox::bumpMessage(int lines) {
 void ChatBox::clearArray(int lines) {
     // clear array for new lines
     for (int i = 1; i < lines + 1; i++) {
-        fill_n(this->boxLines[CHATBOX_SIZE - i], this->messageLength, this->space);  // clear last line
+        fill_n(this->boxLines[CHATBOX_SIZE - i], this->messageLength, this->space);  // clear line
     }
 }
 
 ChatBox::ChatBox() {
-    createChatBox();
+    createChatBox(); // initialise chat box
 }
 
 void ChatBox::printChatBox() {
-    // print chatbox background
+    // print chat box background
     printf("\n-------------------chat-box---------------------\n");  //49
     for (auto &i: this->boxLines) {
         printf("|");
@@ -289,22 +294,28 @@ void ChatBox::printChatBox() {
     printf("------------------------------------------------");
 }
 
+struct getLineArray {
+    // pass by value indirectly
+    string line;
+    int lineLength{};
+};
+
+struct counter {
+    // pass by value indirectly
+    int chatBoxStartPoint;
+};
+
 void ChatBox::enterMessage(string line1) {
     // one line intake
     const int lines = 1;
-    struct getLineArray {
-        string line;
-        int lineLength{};
-    };
+
     getLineArray lineArray[lines];
     lineArray[0].line = line1;
     lineArray[0].lineLength = line1.length();
 
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
-    struct counter {
-        int chatBoxStartPoint;
-    };
+
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
     for (int i = 0; i < lines; i++) {
@@ -323,11 +334,8 @@ void ChatBox::enterMessage(string line1) {
 void ChatBox::enterMessage(string line1, string line2) {
     // two line intake
     const int lines = 2;
-    struct getLineArray {
-        string line;
-        int lineLength{};
-    };
-    struct getLineArray lineArray[lines];
+
+    getLineArray lineArray[lines];
     lineArray[0].line = line1;
     lineArray[0].lineLength = line1.length();
     lineArray[1].line = line2;
@@ -335,9 +343,7 @@ void ChatBox::enterMessage(string line1, string line2) {
 
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
-    struct counter {
-        int chatBoxStartPoint;
-    };
+
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
     for (int i = 0; i < lines; i++) {
@@ -356,11 +362,8 @@ void ChatBox::enterMessage(string line1, string line2) {
 void ChatBox::enterMessage(string line1, string line2, string line3) {
     // three line intake
     const int lines = 3;
-    struct getLineArray {
-        string line;
-        int lineLength{};
-    };
-    struct getLineArray lineArray[lines];
+
+    getLineArray lineArray[lines];
     lineArray[0].line = line1;
     lineArray[0].lineLength = line1.length();
     lineArray[1].line = line2;
@@ -370,9 +373,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3) {
 
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
-    struct counter {
-        int chatBoxStartPoint;
-    };
+
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
     for (int i = 0; i < lines; i++) {
@@ -391,11 +392,8 @@ void ChatBox::enterMessage(string line1, string line2, string line3) {
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4) {
     // four line intake
     const int lines = 4;
-    struct getLineArray {
-        string line;
-        int lineLength{};
-    };
-    struct getLineArray lineArray[lines];
+
+    getLineArray lineArray[lines];
     lineArray[0].line = line1;
     lineArray[0].lineLength = line1.length();
     lineArray[1].line = line2;
@@ -407,9 +405,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
-    struct counter {
-        int chatBoxStartPoint;
-    };
+
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
     for (int i = 0; i < lines; i++) {
@@ -428,11 +424,8 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4, string line5) {
     // five line intake
     const int lines = 5;
-    struct getLineArray {
-        string line;
-        int lineLength{};
-    };
-    struct getLineArray lineArray[lines];
+
+    getLineArray lineArray[lines];
     lineArray[0].line = line1;
     lineArray[0].lineLength = line1.length();
     lineArray[1].line = line2;
@@ -446,9 +439,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
-    struct counter {
-        int chatBoxStartPoint;
-    };
+
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
     for (int i = 0; i < lines; i++) {
@@ -467,11 +458,8 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4, string line5, string line6) {
     // six line intake (max)
     const int lines = 6;
-    struct getLineArray {
-        string line;
-        int lineLength{};
-    };
-    struct getLineArray lineArray[lines];
+
+    getLineArray lineArray[lines];
     lineArray[0].line = line1;
     lineArray[0].lineLength = line1.length();
     lineArray[1].line = line2;
@@ -487,9 +475,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
-    struct counter {
-        int chatBoxStartPoint;
-    };
+
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
     for (int i = 0; i < lines; i++) {
