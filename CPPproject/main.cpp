@@ -84,14 +84,14 @@ int main() {
                     else { // If not door, run puzzle
                         int beforePuzzles;
                         int afterPuzzles;
-                        beforePuzzles = numPuzzleSolved(puzzles);
-                        randomPuzzle(puzzles, chatBox, map);
-                        afterPuzzles = numPuzzleSolved(puzzles);
-                        if (afterPuzzles > beforePuzzles) {
-                            char* isWhatItemAhead = &map.isWhatItemAhead(player)[0];
+                        beforePuzzles = numPuzzleSolved(puzzles); //checks for the number of solved puzzles before
+                        randomPuzzle(puzzles, chatBox, map); // call randomPuzzle method
+                        afterPuzzles = numPuzzleSolved(puzzles); //checks for no of puzzles solved after player interaction
+                        if (afterPuzzles > beforePuzzles) { // if after more than before means player solved puzzle
+                            char* isWhatItemAhead = &map.isWhatItemAhead(player)[0]; //get item that was interacted with
                             for (int i = 0; i < 6; i++) {
-                                if (roomItemArray[i].item == *isWhatItemAhead) {
-                                    map.resetItem(roomItemArray[i].x, roomItemArray[i].y);
+                                if (roomItemArray[i].item == *isWhatItemAhead) { //traverse and look for matching item
+                                    map.resetItem(roomItemArray[i].x, roomItemArray[i].y); //reset item (remove from map)
                                     roomItemArray[i].item = '0';
                                     roomItemArray[i].x = -1;
                                     roomItemArray[i].y = -1;
