@@ -1,7 +1,7 @@
 
 # STEPS TO RUN THE GAME
 
-### Video demonstration link:
+### Video demonstration link: https://youtu.be/b12J0oJIQhY
 
 ## Download, compile and run code:
 1. Download ZIP from github: https://github.com/3ngchun/ICT1009_part2_cpp
