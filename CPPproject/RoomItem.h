@@ -20,7 +20,6 @@ public:
 	void setX(int);
 	int getY();
 	void setY(int);
-	string getCMP();
 };
 
 class LockedDoor : public RoomItems
