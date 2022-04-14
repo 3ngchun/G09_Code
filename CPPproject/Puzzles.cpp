@@ -5,7 +5,7 @@
 #include <time.h>
 #include "Puzzles.h"
 
-void Puzzle::setUnsolved() {
+void Puzzle::setUnsolved() { //setter for solved boolean
     this->solved = false;
 }
 
@@ -13,23 +13,24 @@ void Puzzle::setSolved() {
     this->solved = true;
 }
 
-bool Puzzle::getSolved() {
+bool Puzzle::getSolved() { //getter for solved boolean
     return solved;
 }
 
-void Puzzle::setName(string name) {
+void Puzzle::setName(string name) { //setter for puzzle name
     this->puzzleName = name;
 }
 
-string Puzzle::getName() {
+string Puzzle::getName() { //getter for puzzle name
     return puzzleName;
 }
 
-void Puzzle::startPuzzle(ChatBox* cb, Map map) {
+void Puzzle::startPuzzle(ChatBox* cb, Map map) { //method to start puzzle
     this->startPuzzle(cb, map);
 }
 
 // Scrambled Letters Puzzle #1
+// Player is to decipher a scrambled letters text into a word
 lettersPuzzle::lettersPuzzle() {
     setName("Letters Puzzle");
 }
@@ -64,6 +65,7 @@ void lettersPuzzle::startPuzzle(ChatBox* cb, Map map) {
 }
 
 // Arithmetic Puzzle #2
+// Player to solve a simple arithmetic puzzle
 arithmeticPuzzle::arithmeticPuzzle() {
     setName("Arithmetic Puzzle");
 }
@@ -105,6 +107,7 @@ void arithmeticPuzzle::startPuzzle(ChatBox* cb, Map map) {
 }
 
 //Lockbreaking Puzzle #3
+//Player to decipher the missing piece to a numerical password
 lockbreakingPuzzle::lockbreakingPuzzle() {
     setName("Lockbreaking Puzzle");
 }
@@ -147,6 +150,7 @@ void lockbreakingPuzzle::startPuzzle(ChatBox* cb, Map map) {
 }
 
 // Riddle Puzzle #4
+// Player to decipher a simple riddle
 riddlePuzzle::riddlePuzzle() {
     setName("Riddle Puzzle");
 }
@@ -190,6 +194,7 @@ void riddlePuzzle::startPuzzle(ChatBox* cb, Map map) {
 }
 
 // Riddle Puzzle2 #5
+// Second riddle for player to decipher
 riddlePuzzle2::riddlePuzzle2() {
     setName("Riddle Puzzle 2");
 }
@@ -231,6 +236,7 @@ void riddlePuzzle2::startPuzzle(ChatBox* cb, Map map) {
     }
 }
 
+// Method to intialize all child puzzles and include them in a array of puzzles
 void initPuzzles(Puzzle* puzzles[]) {
 
     lettersPuzzle* p1 = new lettersPuzzle();
@@ -246,6 +252,7 @@ void initPuzzles(Puzzle* puzzles[]) {
     puzzles[4] = p5;
 }
 
+// Method to check for the number of puzzles solved
 int numPuzzleSolved(Puzzle* puzzles[]) {
     int solvedPuzzles = 0;
     Puzzle* currPuzzle;
@@ -262,9 +269,10 @@ int numPuzzleSolved(Puzzle* puzzles[]) {
     return solvedPuzzles;
 }
 
+//method to call a random puzzle, is called when player interacts with room item
 void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map) {
     int key;
-    //srand(time(NULL));
+    srand(time(NULL)); //set rand time to null, achieves true random 
     key = (rand() % 5);
     Puzzle* curPuzzle = puzzles[key];
 
@@ -276,6 +284,7 @@ void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map) {
     }
 }
 
+// method to check if all puzzles are solved and if door should be unlocked
 int unlockDoorCheck(Puzzle* puzzles[]) {
     int flag = 1;
     Puzzle* currPuzzle;
