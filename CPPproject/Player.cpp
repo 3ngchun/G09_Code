@@ -1,46 +1,43 @@
 #include <stdexcept>
 #include "Player.h"
 #include <iostream>
+#include <utility>
 #include "Map.h"
 
 void Player::setName(string name) {
-    this->name = name;
+    this->name = std::move(name);
 }
 
 string Player::getName() {
-    return name;
+    return this->name;
 }
 
 void Player::setX(int x) {
     this->x = x;
 }
 
-int Player::getX() {
-    return x;
+int Player::getX() const {
+    return this->x;
 }
 
 void Player::setY(int y) {
     this->y = y;
 }
 
-char Player::getPlayerIcon() {
-    return player;
+char Player::getPlayerIcon() const {
+    return this->player;
 }
 
 void Player::setPlayerIcon(char player) {
     this->player = player;
 }
 
-int Player::getY() {
-    return y;
+int Player::getY() const {
+    return this->y;
 }
 
 void Player::setDirection(string direction) {
-    this->direction = direction;
-}
-
-string Player::getDirection() {
-    return direction;
+    this->direction = std::move(direction);
 }
 
 string Player::printName() {
@@ -49,21 +46,17 @@ string Player::printName() {
 }
 
 void Player::userGuide() {
-    cout << "\nUser Instruction Guide:";
+    cout << "USER INSTRUCTION GUIDE";
     cout << "\nDirection: up / down / left / right";
     cout << "\nGive up: quit";
-    cout << "\nInteract with all room items to solve puzzles and escape the room!\n";
-}
-
-void Player::printPlayerIcon() {
-    cout << getPlayerIcon() << endl;
+    cout << "\nSolve all hidden puzzles and escape the room!\n";
 }
 
 void Player::printDirection(struct createRoomItemArray *roomItemArray) {
-    if (direction == "up") {
+    if (this->direction == "up") {
         bool checked = false;
         for (int i = 0; i < 6; i++) {
-            if (getX() == roomItemArray[i].x && getY() == roomItemArray[i].y+1) {
+            if (getX() == roomItemArray[i].x && getY() == roomItemArray[i].y + 1) {
                 setY(getY());
                 checked = true;
                 break;
@@ -73,10 +66,10 @@ void Player::printDirection(struct createRoomItemArray *roomItemArray) {
             setY(getY() - 1);
         }
         setPlayerIcon('^');
-    } else if (direction == "down") {
+    } else if (this->direction == "down") {
         bool checked = false;
         for (int i = 0; i < 6; i++) {
-            if (getX() == roomItemArray[i].x && getY() == roomItemArray[i].y-1) {
+            if (getX() == roomItemArray[i].x && getY() == roomItemArray[i].y - 1) {
                 setY(getY());
                 checked = true;
                 break;
@@ -86,10 +79,10 @@ void Player::printDirection(struct createRoomItemArray *roomItemArray) {
             setY(getY() + 1);
         }
         setPlayerIcon('v');
-    } else if (direction == "right") {
+    } else if (this->direction == "right") {
         bool checked = false;
         for (int i = 0; i < 6; i++) {
-            if (getX() == roomItemArray[i].x -1 && getY() == roomItemArray[i].y) {
+            if (getX() == roomItemArray[i].x - 1 && getY() == roomItemArray[i].y) {
                 setY(getY());
                 checked = true;
                 break;
@@ -99,10 +92,10 @@ void Player::printDirection(struct createRoomItemArray *roomItemArray) {
             setX(getX() + 1);
         }
         setPlayerIcon('>');
-    } else if (direction == "left") {
+    } else if (this->direction == "left") {
         bool checked = false;
         for (int i = 0; i < 6; i++) {
-            if (getX() == roomItemArray[i].x +1 && getY() == roomItemArray[i].y) {
+            if (getX() == roomItemArray[i].x + 1 && getY() == roomItemArray[i].y) {
                 setY(getY());
                 checked = true;
                 break;
@@ -116,19 +109,21 @@ void Player::printDirection(struct createRoomItemArray *roomItemArray) {
 }
 
 istream &operator>>(istream &in, Player &player) {
-    const string ERROR_MSG = "Name cannot contain special character.";
+    string ERROR_MSG;
     cout << "But first, we would like to know your name: ";
     getline(in, player.name);
-    int length = player.name.length();
+    int length = (int) player.name.length();
     for (int i = 0; i < length; i++) {
         if (!((player.name[i] >= 48 && player.name[i] <= 57) ||
               (player.name[i] >= 65 && player.name[i] <= 90) ||
               (player.name[i] >= 97 && player.name[i] <= 122))) {
-            throw (ERROR_MSG);
+            ERROR_MSG = "Name cannot contain special character.";
+            throw invalid_argument(ERROR_MSG);
         }
     }
     if (length > 15) {
-        throw (length);
+        ERROR_MSG = "Name should not exceed 15 characters";
+        throw length_error(ERROR_MSG);
     }
     return in;
 }

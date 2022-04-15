@@ -13,17 +13,27 @@
 #include "vector"
 #include "RoomItem.h"
 
+
+#define MAP_SIZE 16
+const int CHATBOX_SIZE = 6;
+using namespace std;
+class ChatBox;
+class Player;
 struct createRoomItemArray{
     // to make struct array of room item attribute
     int x;
     int y;
     char item;
 };
-#define MAP_SIZE 16
-const int CHATBOX_SIZE = 6;
-using namespace std;
-class ChatBox;
-class Player;
+struct getLineArray {
+    // pass by value indirectly
+    string line;
+    int lineLength{};
+};
+struct counter {
+    // pass by value indirectly
+    int chatBoxStartPoint;
+};
 class Map {
     friend void printScreen(Map,ChatBox);
 private:
@@ -31,13 +41,11 @@ private:
     char space = ' ';
     void createMap();
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
 public:
     Map();
     string isWhatItemAhead(Player);
     string checkMap(Player);
-    string isOutOfBound(Player);
-    string printItemAhead(string);
+    static string printItemAhead(string);
     void fillRoomItem(struct createRoomItemArray*);
     void printMap();
     void setItem(int, int, char);
@@ -55,6 +63,7 @@ private:
     void createChatBox();
     void bumpMessage(int);
     void clearArray(int);
+    void enterMessageIntoChatBox(int, struct getLineArray*, struct counter);
 public:
     ChatBox();
     void printChatBox();

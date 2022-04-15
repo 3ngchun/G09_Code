@@ -9,17 +9,15 @@ using namespace std;
 class RoomItems
 {
 private:
-	string itemName;
-	string item;
+	char item{};
 	int x = 0;
 	int y = 0;
 public:
-	string getItemName();
-	char printinfo();
-	int getX();
-	void setX(int);
-	int getY();
-	void setY(int);
+	virtual char printinfo() const;
+    virtual int getX() const;
+    virtual void setX(int);
+    virtual int getY() const;
+    virtual void setY(int);
 };
 
 class LockedDoor : public RoomItems
@@ -27,15 +25,13 @@ class LockedDoor : public RoomItems
 private:
 	int x = 0;
 	int y = 0;
-	string itemName = "Locked Door";
-	string item = "]";
+    char item = ']';
 public:
-	string getItemName();
-	char printinfo();
-	int getX();
-	void setX(int);
-	int getY();
-	void setY(int);
+	char printinfo() const;
+	int getX() const override;
+	void setX(int) override;
+	int getY() const override;
+	void setY(int) override;
 };
 
 class UnlockedDoor : public RoomItems
@@ -43,15 +39,13 @@ class UnlockedDoor : public RoomItems
 private:
 	int x = 0;
 	int y = 0;
-	string itemName = "Unlocked Door";
-	string item = "[";
+    char item = '[';
 public:
-	string getItemName();
-	char printinfo();
-	int getX();
-	void setX(int);
-	int getY();
-	void setY(int);
+	char printinfo() const;
+	int getX() const override;
+	void setX(int) override;
+	int getY() const override;
+	void setY(int) override;
 };
 
 class Chair : public RoomItems
@@ -59,15 +53,13 @@ class Chair : public RoomItems
 private:
 	int x = 12;
 	int y = 7;
-	string itemName = "Chair";
-	string item ="h";
+    char item = 'h';
 public:
-	string getItemName();
-	char printinfo();
-	int getX();
-	void setX(int);
-	int getY();
-	void setY(int);
+	char printinfo() const;
+	int getX() const override;
+	void setX(int) override;
+	int getY() const override;
+	void setY(int) override;
 };
 
 class Table : public RoomItems
@@ -75,14 +67,12 @@ class Table : public RoomItems
 private:
 	int x = 13;
 	int y = 7;
-	string itemName = "Table Door";
-	string item="T";
+    char item = 'T';
 public:
-	string getItemName();
-	char printinfo();
-	int getX();
-	void setX(int);
-	int getY();
+	char printinfo() const;
+	int getX() const override;
+	void setX(int) override;
+	int getY() const override;
 	void setY(int);
 };
 
@@ -91,15 +81,13 @@ class Bed : public RoomItems
 private:
 	int x = 10;
 	int y = 5;
-	string itemName = "Bed";
-	string item ="=";
+    char item = '=';
 public:
-	string getItemName();
-	char printinfo();
-	int getX();
-	void setX(int);
-	int getY();
-	void setY(int);
+	char printinfo() const ;
+	int getX() const override;
+	void setX(int) override;
+	int getY() const override;
+	void setY(int) override;
 };
 
 class Plant : public RoomItems
@@ -107,15 +95,13 @@ class Plant : public RoomItems
 private:
 	int x = 6;
 	int y = 7;
-	string itemName = "Plant";
-	string item="+";
+	char item = '+';
 public:
-	string getItemName();
-	char printinfo();
-	int getX();
-	void setX(int);
-	int getY();
-	void setY(int);
+	char printinfo() const;
+	int getX() const override;
+	void setX(int) override;
+	int getY() const override;
+	void setY(int) override;
 };
 
 class Light : public RoomItems
@@ -123,17 +109,12 @@ class Light : public RoomItems
 private:
 	int x = 11;
 	int y = 4;
-	bool on = false;
-	string itemName = "Light";
-	string item ="*";
+	char item = '*';
 public:
-	string getItemName();
-	char printinfo();
-	void turnLightsOn();
-	void turnLightsOff();
-	int getX();
-	void setX(int);
-	int getY();
+	char printinfo() const;
+	int getX() const override;
+	void setX(int) override;
+	int getY() const override;
 	void setY(int);
 };
 

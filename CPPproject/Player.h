@@ -18,18 +18,16 @@ private:
 public:
     string getName();
     void setName(string);
-    string getDirection();
     void setDirection(string);
-    int getX();
+    int getX() const;
     void setX(int);
-    int getY();
+    int getY() const;
     void setY(int);
-    char getPlayerIcon();
+    char getPlayerIcon() const;
     void setPlayerIcon(char);
     void printDirection(struct createRoomItemArray*);
     string printName();
-    void userGuide();
-    void printPlayerIcon();
+    static void userGuide();
 };
 
 #endif 

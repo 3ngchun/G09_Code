@@ -6,21 +6,23 @@
 #include "Puzzles.h"
 
 using namespace std;
-void printScreen(Map map, ChatBox chatBox){
+
+void printScreen(Map map, ChatBox chatBox) {
     // friend function to print game background as a set
     map.printMap();
     chatBox.printChatBox();
 }
+
 int main() {
     // initialise objects
     Map map;
     ChatBox cb;
-    ChatBox* chatBox = &cb;
+    ChatBox *chatBox = &cb;
     string instruction;
     string name;
     Player player;
     UnlockedDoor ud;
-    Puzzle* puzzles[20];
+    Puzzle *puzzles[5];
     initPuzzles(puzzles);
 
     cout << "Hi Adventurer, welcome to QuizLand!" << endl;
@@ -29,12 +31,14 @@ int main() {
         try {
             cin >> player;
         }
-        catch (const string msg) {
-            cout << msg << endl;
+        catch (const invalid_argument &e) {
+            // if player enter special character
+            cout << e.what() << endl;
             player.setName(" ");
         }
-        catch (const int length) {
-            cout << "Name should not exceed 15 characters" << endl;
+        catch (const length_error &e) {
+            // if player enter more than 15 character
+            cout << e.what() << endl;
             player.setName(" ");
         }
     } while (player.getName() == " ");
@@ -49,7 +53,7 @@ int main() {
         // game loop
         system("CLS"); // refresh screen
         player.printName();
-        player.userGuide();
+        Player::userGuide();
         printScreen(map, *chatBox);  // game background
         map.resetItem(player.getX(), player.getY()); // remove player trace
         cout << "\nEnter next step: ";
@@ -57,56 +61,53 @@ int main() {
         if (instruction == "quit") {
             // if quit, stop loop
             break;
-        }
-        else {
+        } else {
             player.setDirection(instruction); // if player move, set change player icon direction
             player.printDirection(roomItemArray);
             map.setItem(player.getX(), player.getY(), player.getPlayerIcon()); // set player onto map
             if (map.checkMap(player) == "out") {
+                // if out of boundary, print direction to out of bound
                 chatBox->enterMessage(map.isWhatItemAhead(player));
-            }
-            else if (map.checkMap(player) == "Item") {
+            } else if (map.checkMap(player) == "Item") {
                 string item = map.isWhatItemAhead(player);
-                chatBox->enterMessage(map.printItemAhead(item));
+                chatBox->enterMessage(Map::printItemAhead(item));
                 chatBox->enterMessage("Enter 'interact' to interact with item");
                 chatBox->enterMessage(instruction);
                 if (instruction == "interact") {
                     if (item == "]") { //check if player at door
                         if (unlockDoorCheck(puzzles) != 1) { //check if all puzzles solved
                             chatBox->enterMessage("", "Door is locked :(");
-                        }
-                        else { //else print unlocked
+                        } else { //else print unlocked
                             map.setItem(0, 0, ud.printinfo());
                             chatBox->enterMessage("", "Hoorah! Door is unlocked!!!!");
                             chatBox->enterMessage("", "Enter 'win' to complete the game");
                         }
-                    }
-                    else { // If not door, run puzzle
+                    } else { // If not door, run puzzle
                         int beforePuzzles;
                         int afterPuzzles;
                         beforePuzzles = numPuzzleSolved(puzzles); //checks for the number of solved puzzles before
                         randomPuzzle(puzzles, chatBox, map); // call randomPuzzle method
-                        afterPuzzles = numPuzzleSolved(puzzles); //checks for no of puzzles solved after player interaction
+                        afterPuzzles = numPuzzleSolved(
+                                puzzles); //checks for no of puzzles solved after player interaction
                         if (afterPuzzles > beforePuzzles) { // if after more than before means player solved puzzle
-                            char* isWhatItemAhead = &map.isWhatItemAhead(player)[0]; //get item that was interacted with
-                            for (int i = 0; i < 6; i++) {
-                                if (roomItemArray[i].item == *isWhatItemAhead) { //traverse and look for matching item
-                                    map.resetItem(roomItemArray[i].x, roomItemArray[i].y); //reset item (remove from map)
-                                    roomItemArray[i].item = '0';
-                                    roomItemArray[i].x = -1;
-                                    roomItemArray[i].y = -1;
+                            string isWhatItemAhead = map.isWhatItemAhead(player); //get item that was interacted with
+                            for (auto & roomItemArrayTmp : roomItemArray) {
+                                if (roomItemArrayTmp.item == isWhatItemAhead[0]) { //traverse and look for matching item
+                                    map.resetItem(roomItemArrayTmp.x,
+                                                  roomItemArrayTmp.y); //reset item (remove from map)
+                                    roomItemArrayTmp.item = '0';
+                                    roomItemArrayTmp.x = -1;
+                                    roomItemArrayTmp.y = -1;
                                     break;
                                 }
                             }
                         }
 
                     }
-                }
-                else if ((item == "[") && (instruction == "win") && (unlockDoorCheck(puzzles) == 1)) {
+                } else if ((item == "[") && (instruction == "win") && (unlockDoorCheck(puzzles) == 1)) {
                     break;
                 }
-            }
-            else {
+            } else {
                 chatBox->enterMessage(instruction);
             }
             continue;
@@ -129,8 +130,7 @@ int main() {
 /_/ /_/ /_/\__,_/_/ /_/_/|_/____/  /_/  \____/_/     /_/   /_/\__,_/\__, /_/_/ /_/\__, (_|_)   
                                                                    /____/        /____/        
 )" << '\n';
-    }
-    else {
+    } else {
         std::cout << R"(
                                                              _       __
    ________  ___     __  ______  __  __   ____ _____ _____ _(_)___  / /

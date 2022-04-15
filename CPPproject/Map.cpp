@@ -5,7 +5,9 @@
 #include "RoomItem.h"
 
 class ChatBox;
+
 class Player;
+
 void Map::createMap() {
 
     for (auto &i: this->mapping) {
@@ -17,48 +19,6 @@ void Map::createMap() {
 
 Map::Map() {
     createMap();
-}
-
-string Map::isOutOfBound(Player player) {
-    // check item ahead of player is out of bound or what item is it
-    int x = player.getX();
-    int y = player.getY();
-    char face = player.getPlayerIcon(); // which direction player is facing
-    string next_facing_item;
-    switch (face) {
-        case '^':
-            if (y != 0) {
-                next_facing_item = getItem(x, y - 1);
-            } else {
-                next_facing_item = "out";
-            }
-            break;
-        case 'v':
-            if (y != 15) {
-                next_facing_item = getItem(x, y + 1);
-            } else {
-                next_facing_item = "out";
-            }
-            break;
-        case '<':
-            if (x != 0) {
-                next_facing_item = getItem(x - 1, y);
-            } else {
-                next_facing_item = "out";
-            }
-            break;
-        case '>':
-            if (x != 15) {
-                next_facing_item = getItem(x + 1, y);
-            } else {
-                next_facing_item = "out";
-            }
-            break;
-        default:
-            next_facing_item = this->space;
-            break;
-    }
-    return next_facing_item; // return either "out" or the item char in front of player or empty space
 }
 
 string Map::checkMap(Player player) {
@@ -194,19 +154,18 @@ void Map::fillRoomItem(struct createRoomItemArray *roomItemArray) {
 
 string Map::printItemAhead(string next_facing_item) {
     // return string of room item ahead of player
-    if (next_facing_item.compare("]") == 0) {
+    if (next_facing_item == "]") {
+    } else if (next_facing_item == "[") {
         next_facing_item = "Door ahead";
-    } else if (next_facing_item.compare("[") == 0) {
-        next_facing_item = "Door ahead";
-    } else if (next_facing_item.compare("h") == 0) {
+    } else if (next_facing_item == "h") {
         next_facing_item = "There is a chair ahead";
-    } else if (next_facing_item.compare("T") == 0) {
+    } else if (next_facing_item == "T") {
         next_facing_item = "There is a table ahead";
-    } else if (next_facing_item.compare("=") == 0) {
+    } else if (next_facing_item == "=") {
         next_facing_item = "There is a bed ahead";
-    } else if (next_facing_item.compare("+") == 0) {
+    } else if (next_facing_item == "+") {
         next_facing_item = "There is a plant ahead";
-    } else if (next_facing_item.compare("*") == 0) {
+    } else if (next_facing_item == "*") {
         next_facing_item = "There is a lamp ahead";
     }
     return next_facing_item;
@@ -277,33 +236,37 @@ void ChatBox::clearArray(int lines) {
     }
 }
 
+void ChatBox::enterMessageIntoChatBox(const int lines, getLineArray *lineArray, counter counts) {
+    for (int i = 0; i < lines; i++) {
+        // for each line
+        for (int j = 0; j < lineArray[i].lineLength; j++) {
+            // add message to new lines
+            if (j == this->messageLength) {
+                break;
+            }
+            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
+        }
+        counts.chatBoxStartPoint++;
+    }
+}
+
 ChatBox::ChatBox() {
     createChatBox(); // initialise chat box
 }
 
 void ChatBox::printChatBox() {
     // print chat box background
-    printf("\n-------------------chat-box---------------------\n");  //49
+    using namespace std;
+    cout << endl << "-------------------chat-box---------------------" << endl; //49
     for (auto &i: this->boxLines) {
-        printf("|");
+        cout << this->wall;
         for (int j = 0; j < this->messageLength; j++) {
-            printf("%c", i[j]);
+            cout << i[j];
         }
-        printf("|\n");
+        cout << this->wall << endl;
     }
-    printf("------------------------------------------------");
+    cout << "------------------------------------------------";
 }
-
-struct getLineArray {
-    // pass by value indirectly
-    string line;
-    int lineLength{};
-};
-
-struct counter {
-    // pass by value indirectly
-    int chatBoxStartPoint;
-};
 
 void ChatBox::enterMessage(string line1) {
     // one line intake
@@ -318,17 +281,7 @@ void ChatBox::enterMessage(string line1) {
 
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
-    for (int i = 0; i < lines; i++) {
-        // for each line
-        for (int j = 0; j < lineArray[i].lineLength; j++) {
-            // add message to new lines
-            if (j == this->messageLength) {
-                break;
-            }
-            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
-        }
-        counts.chatBoxStartPoint++;
-    }
+    enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
 void ChatBox::enterMessage(string line1, string line2) {
@@ -346,17 +299,7 @@ void ChatBox::enterMessage(string line1, string line2) {
 
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
-    for (int i = 0; i < lines; i++) {
-        // for each line
-        for (int j = 0; j < lineArray[i].lineLength; j++) {
-            // add message to new lines
-            if (j == this->messageLength) {
-                break;
-            }
-            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
-        }
-        counts.chatBoxStartPoint++;
-    }
+    enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
 void ChatBox::enterMessage(string line1, string line2, string line3) {
@@ -376,17 +319,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3) {
 
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
-    for (int i = 0; i < lines; i++) {
-        // for each line
-        for (int j = 0; j < lineArray[i].lineLength; j++) {
-            // add message to new lines
-            if (j == this->messageLength) {
-                break;
-            }
-            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
-        }
-        counts.chatBoxStartPoint++;
-    }
+    enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4) {
@@ -408,17 +341,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
-    for (int i = 0; i < lines; i++) {
-        // for each line
-        for (int j = 0; j < lineArray[i].lineLength; j++) {
-            // add message to new lines
-            if (j == this->messageLength) {
-                break;
-            }
-            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
-        }
-        counts.chatBoxStartPoint++;
-    }
+    enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4, string line5) {
@@ -442,17 +365,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
-    for (int i = 0; i < lines; i++) {
-        // for each line
-        for (int j = 0; j < lineArray[i].lineLength; j++) {
-            // add message to new lines
-            if (j == this->messageLength) {
-                break;
-            }
-            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
-        }
-        counts.chatBoxStartPoint++;
-    }
+    enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
 void ChatBox::enterMessage(string line1, string line2, string line3, string line4, string line5, string line6) {
@@ -478,17 +391,7 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
 
     counter counts{};
     counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
-    for (int i = 0; i < lines; i++) {
-        // for each line
-        for (int j = 0; j < lineArray[i].lineLength; j++) {
-            // add message to new lines
-            if (j == this->messageLength) {
-                break;
-            }
-            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
-        }
-        counts.chatBoxStartPoint++;
-    }
+    enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
 

@@ -12,11 +12,10 @@ private:
     bool solved = false;
     string puzzleName;
 public:
-    void setUnsolved();
     void setSolved();
-    bool getSolved();
+    bool getSolved() const;
     void setName(string);
-    string getName();
+    string getName() const;
     virtual void startPuzzle(ChatBox*, Map);
 };
 
@@ -26,7 +25,7 @@ private:
     string scrambled = "GAPMGNIRORM";
 public:
     lettersPuzzle();
-    void startPuzzle(ChatBox*, Map);
+    void startPuzzle(ChatBox*, Map) override;
 };
 
 class arithmeticPuzzle : public Puzzle {
@@ -34,7 +33,7 @@ private:
     int correctAnswer = 8;
 public:
     arithmeticPuzzle();
-    void startPuzzle(ChatBox*, Map);
+    void startPuzzle(ChatBox*, Map) override;
 };
 
 class lockbreakingPuzzle : public Puzzle {
@@ -42,7 +41,7 @@ private:
     int correctAnswer = 7;
 public:
     lockbreakingPuzzle();
-    void startPuzzle(ChatBox*, Map);
+    void startPuzzle(ChatBox*, Map) override;
 };
 
 class riddlePuzzle : public Puzzle {
@@ -50,7 +49,7 @@ private:
     int correctAnswer = 9;
 public:
     riddlePuzzle();
-    void startPuzzle(ChatBox*, Map);
+    void startPuzzle(ChatBox*, Map) override;
 };
 
 class riddlePuzzle2 : public Puzzle {
@@ -58,11 +57,14 @@ private:
     int correctAnswer = 3;
 public:
     riddlePuzzle2();
-    void startPuzzle(ChatBox*, Map);
+    void startPuzzle(ChatBox*, Map) override;
 };
 
 // init child puzzles
 void initPuzzles(Puzzle* puzzles[]);
+
+// pseudo random generator
+double getRand(double);
 
 // Start random Puzzle function
 void randomPuzzle(Puzzle* puzzles[], ChatBox* cb, Map map);

@@ -1,166 +1,161 @@
-#include <stdexcept>
 #include "RoomItem.h"
 
-char RoomItems::printinfo() {
-	return 0;
+char RoomItems::printinfo() const {
+    return this->item;
 }
-string RoomItems::getItemName() {
-	return " ";
+
+int RoomItems::getX() const {
+    return this->x;
 }
-int RoomItems::getX() {
-	return x;
-}
+
 void RoomItems::setX(int x) {
-	this->x = x;
+    this->x = x;
 }
-int RoomItems::getY() {
-	return y;
+
+int RoomItems::getY() const {
+    return this->y;
 }
+
 void RoomItems::setY(int y) {
-	this->y = y;
+    this->y = y;
 }
 
-char LockedDoor::printinfo() {
-	char item = ']';
-	return item;
+char LockedDoor::printinfo() const {
+    return this->item;
 }
-string LockedDoor::getItemName() {
-	return itemName;
+
+int LockedDoor::getX() const {
+    return this->x;
 }
-int LockedDoor::getX() {
-	return x;
-}
+
 void LockedDoor::setX(int x) {
-	this->x = x;
+    this->x = x;
 }
-int LockedDoor::getY() {
-	return y;
+
+int LockedDoor::getY() const {
+    return this->y;
 }
+
 void LockedDoor::setY(int y) {
-	this->y = y;
+    this->y = y;
 }
 
-char UnlockedDoor::printinfo() {
-	char item = '[';
-	return item;
+char UnlockedDoor::printinfo() const {
+    return this->item;
 }
-string UnlockedDoor::getItemName() {
-	return itemName;
+
+int UnlockedDoor::getX() const {
+    return this->x;
 }
-int UnlockedDoor::getX() {
-	return x;
-}
+
 void UnlockedDoor::setX(int x) {
-	this->x = x;
+    this->x = x;
 }
-int UnlockedDoor::getY() {
-	return y;
+
+int UnlockedDoor::getY() const {
+    return this->y;
 }
+
 void UnlockedDoor::setY(int y) {
-	this->y = y;
+    this->y = y;
 }
 
-char Chair::printinfo()
-{
-	char item = 'h';
-	return item;
+char Chair::printinfo() const {
+    return this->item;
 }
-string Chair::getItemName() {
-	return itemName;
+
+int Chair::getX() const {
+    return this->x;
 }
-int Chair::getX() {
-	return x;
-}
+
 void Chair::setX(int x) {
-	this->x = x;
+    this->x = x;
 }
-int Chair::getY() {
-	return y;
+
+int Chair::getY() const {
+    return this->y;
 }
+
 void Chair::setY(int y) {
-	this->y = y;
+    this->y = y;
 }
 
-char Table::printinfo()
-{
-	char item = 'T';
-	return item;
+char Table::printinfo() const {
+    return this->item;
 }
-string Table::getItemName() {
-	return itemName;
+
+int Table::getX() const {
+    return this->x;
 }
-int Table::getX() {
-	return x;
-}
+
 void Table::setX(int x) {
-	this->x = x;
+    this->x = x;
 }
-int Table::getY() {
-	return y;
+
+int Table::getY() const {
+    return this->y;
 }
+
 void Table::setY(int y) {
-	this->y = y;
+    this->y = y;
 }
 
-char Bed::printinfo()
-{
-	char item = '=';
-	return item;
+char Bed::printinfo() const {
+    return this->item;
 }
-string Bed::getItemName() {
-	return itemName;
+
+int Bed::getX() const {
+    return this->x;
 }
-int Bed::getX() {
-	return x;
-}
+
 void Bed::setX(int x) {
-	this->x = x;
+    this->x = x;
 }
-int Bed::getY() {
-	return y;
+
+int Bed::getY() const {
+    return y;
 }
+
 void Bed::setY(int y) {
-	this->y = y;
+    this->y = y;
 }
 
-char Plant::printinfo()
-{
-	char item = '+';
-	return item;
+char Plant::printinfo() const {
+    return this->item;
 }
-string Plant::getItemName() {
-	return itemName;
+
+int Plant::getX() const {
+    return this->x;
 }
-int Plant::getX() {
-	return x;
-}
+
 void Plant::setX(int x) {
-	this->x = x;
-}
-int Plant::getY() {
-	return y;
-}
-void Plant::setY(int y) {
-	this->y = y;
+    this->x = x;
 }
 
-char Light::printinfo()
-{
-	char item = '*';
-	return item;
+int Plant::getY() const {
+    return this->y;
 }
-string Light::getItemName() {
-	return itemName;
+
+void Plant::setY(int y) {
+    this->y = y;
 }
-int Light::getX() {
-	return x;
+
+char Light::printinfo() const {
+    return this->item;
 }
+
+int Light::getX() const {
+    return this->x;
+}
+
 void Light::setX(int x) {
-	this->x = x;
+    this->x = x;
 }
-int Light::getY() {
-	return y;
+
+int Light::getY() const {
+    return this->y;
 }
-void Light::setY(int x) {
-	this->y = y;
+
+void Light::setY(int y) {
+    this->y = y;
 }
