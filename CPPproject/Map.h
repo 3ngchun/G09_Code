@@ -43,8 +43,8 @@ private:
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 public:
     Map();
-    string isWhatItemAhead(Player);
-    string checkMap(Player);
+    string isWhatItemAhead(const Player&);
+    string checkMap(const Player&);
     static string printItemAhead(string);
     void fillRoomItem(struct createRoomItemArray*);
     void printMap();
@@ -63,7 +63,7 @@ private:
     void createChatBox();
     void bumpMessage(int);
     void clearArray(int);
-    void enterMessageIntoChatBox(int, struct getLineArray*, struct counter);
+    void enterMessageIntoChatBox(int, struct getLineArray*, int counter);
 public:
     ChatBox();
     void printChatBox();

@@ -9,7 +9,6 @@ class ChatBox;
 class Player;
 
 void Map::createMap() {
-
     for (auto &i: this->mapping) {
         for (char &j: i) {
             j = this->space;
@@ -21,7 +20,7 @@ Map::Map() {
     createMap();
 }
 
-string Map::checkMap(Player player) {
+string Map::checkMap(const Player& player) {
     // return item ahead of player
     int x = player.getX();
     int y = player.getY();
@@ -31,7 +30,7 @@ string Map::checkMap(Player player) {
         case '^':
             if (y != 0) {
                 next_facing_item = getItem(x, y - 1);
-                if (next_facing_item.compare(" ") != 0) {
+                if (next_facing_item != " ") {
                     next_facing_item = "Item";
                 }
             } else {
@@ -41,7 +40,7 @@ string Map::checkMap(Player player) {
         case 'v':
             if (y != 15) {
                 next_facing_item = getItem(x, y + 1);
-                if (next_facing_item.compare(" ") != 0) {
+                if (next_facing_item != " ") {
                     next_facing_item = "Item";
                 }
             } else {
@@ -51,7 +50,7 @@ string Map::checkMap(Player player) {
         case '<':
             if (x != 0) {
                 next_facing_item = getItem(x - 1, y);
-                if (next_facing_item.compare(" ") != 0) {
+                if (next_facing_item != " ") {
                     next_facing_item = "Item";
                 }
             } else {
@@ -61,7 +60,7 @@ string Map::checkMap(Player player) {
         case '>':
             if (x != 15) {
                 next_facing_item = getItem(x + 1, y);
-                if (next_facing_item.compare(" ") != 0) {
+                if (next_facing_item != " ") {
                     next_facing_item = "Item";
                 }
             } else {
@@ -75,7 +74,7 @@ string Map::checkMap(Player player) {
     return next_facing_item; // return either "item" or "out" or spacing
 }
 
-string Map::isWhatItemAhead(Player player) {
+string Map::isWhatItemAhead(const Player& player) {
     // return item char ahead of player in string type
     int x = player.getX();
     int y = player.getY();
@@ -121,7 +120,6 @@ void Map::fillRoomItem(struct createRoomItemArray *roomItemArray) {
     // fill struct array with room items and set them onto map
     // initialise all room item object
     LockedDoor ld;
-    UnlockedDoor ud;
     Table t;
     Chair c;
     Bed b;
@@ -236,7 +234,7 @@ void ChatBox::clearArray(int lines) {
     }
 }
 
-void ChatBox::enterMessageIntoChatBox(const int lines, getLineArray *lineArray, counter counts) {
+void ChatBox::enterMessageIntoChatBox(const int lines, getLineArray *lineArray, int counts) {
     for (int i = 0; i < lines; i++) {
         // for each line
         for (int j = 0; j < lineArray[i].lineLength; j++) {
@@ -244,9 +242,11 @@ void ChatBox::enterMessageIntoChatBox(const int lines, getLineArray *lineArray, 
             if (j == this->messageLength) {
                 break;
             }
-            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
+//            this->boxLines[counts.chatBoxStartPoint][j] = lineArray[i].line[j];
+            this->boxLines[counts][j] = lineArray[i].line[j];
         }
-        counts.chatBoxStartPoint++;
+        counts++;
+//        counts.chatBoxStartPoint++;
     }
 }
 
@@ -279,8 +279,9 @@ void ChatBox::enterMessage(string line1) {
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
 
-    counter counts{};
-    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+//    counter counts{};
+//    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+    int counts = CHATBOX_SIZE - lines;
     enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
@@ -297,8 +298,9 @@ void ChatBox::enterMessage(string line1, string line2) {
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
 
-    counter counts{};
-    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+//    counter counts{};
+//    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+    int counts = CHATBOX_SIZE - lines;
     enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
@@ -317,8 +319,9 @@ void ChatBox::enterMessage(string line1, string line2, string line3) {
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
 
-    counter counts{};
-    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+//    counter counts{};
+//    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+    int counts = CHATBOX_SIZE - lines;
     enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
@@ -339,8 +342,9 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
 
-    counter counts{};
-    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+//    counter counts{};
+//    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+    int counts = CHATBOX_SIZE - lines;
     enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
@@ -363,8 +367,9 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
 
-    counter counts{};
-    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+//    counter counts{};
+//    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+    int counts = CHATBOX_SIZE - lines;
     enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 
@@ -389,8 +394,9 @@ void ChatBox::enterMessage(string line1, string line2, string line3, string line
     bumpMessage(lines); // push history chat up
     clearArray(lines); // clear off unwanted text on new lines
 
-    counter counts{};
-    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+//    counter counts{};
+//    counts.chatBoxStartPoint = CHATBOX_SIZE - lines;
+    int counts = CHATBOX_SIZE - lines;
     enterMessageIntoChatBox(lines, lineArray, counts); // print lines
 }
 

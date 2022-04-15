@@ -42,7 +42,6 @@ int main() {
             player.setName(" ");
         }
     } while (player.getName() == " ");
-
     // prepare room item
     map.setItem(player.getX(), player.getY(), player.getPlayerIcon());
     createRoomItemArray roomItemArray[6];
@@ -91,7 +90,7 @@ int main() {
                                 puzzles); //checks for no of puzzles solved after player interaction
                         if (afterPuzzles > beforePuzzles) { // if after more than before means player solved puzzle
                             string isWhatItemAhead = map.isWhatItemAhead(player); //get item that was interacted with
-                            for (auto & roomItemArrayTmp : roomItemArray) {
+                            for (auto &roomItemArrayTmp: roomItemArray) {
                                 if (roomItemArrayTmp.item == isWhatItemAhead[0]) { //traverse and look for matching item
                                     map.resetItem(roomItemArrayTmp.x,
                                                   roomItemArrayTmp.y); //reset item (remove from map)
@@ -141,6 +140,5 @@ int main() {
 
 )" << '\n';
     }
-
     return 0;
 }

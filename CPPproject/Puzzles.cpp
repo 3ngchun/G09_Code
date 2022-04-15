@@ -222,7 +222,7 @@ void riddlePuzzle2::startPuzzle(ChatBox *cb, Map map) {
     }
 }
 
-// Method to intialize all child puzzles and include them in a array of puzzles
+// Method to initialize all child puzzles and include them in a array of puzzles
 void initPuzzles(Puzzle *puzzles[]) {
     auto *p1 = new lettersPuzzle();
     auto *p2 = new arithmeticPuzzle();
