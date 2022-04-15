@@ -14,7 +14,7 @@
 1. To move the player: 'up' / 'down' / 'left' / 'right' 
 2. To give up on the game: 'quit'
 3. To interact with the room items: 'interact'
-4. To view history of commands: Chatbox
+4. To view history of commands: Chatbox interface
 
 ## After running the game:
 1. Traverse around the map to find puzzles
