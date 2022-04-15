@@ -30,10 +30,7 @@ struct getLineArray {
     string line;
     int lineLength{};
 };
-struct counter {
-    // pass by value indirectly
-    int chatBoxStartPoint;
-};
+
 class Map {
     friend void printScreen(Map,ChatBox);
 private:
